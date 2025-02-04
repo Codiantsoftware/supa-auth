@@ -2,7 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import toast from "react-hot-toast";
 
+/**
+ * Authentication Component
+ * Handles user sign-up, sign-in, and OTP verification.
+ *
+ * @returns {JSX.Element} Authentication UI
+ */
 export default function Auth() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -10,10 +17,16 @@ export default function Auth() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [otp, setOtp] = useState('');
     const [isSignUp, setIsSignUp] = useState(false);
-    const [isMfaEnabled, setIsMfaEnabled] = useState(false); // Flag for MFA OTP
+    const [isMfaEnabled, setIsMfaEnabled] = useState(false);
     const [error, setError] = useState('');
     const router = useRouter();
 
+    /**
+     * Handles user sign-up request.
+     * Sends user details to the backend API for registration.
+     * Displays success or error messages accordingly.
+     * Redirects to the dashboard on success.
+     */
     const handleSignUp = async () => {
         const res = await fetch('/api/auth/signup', {
             method: 'POST',
@@ -23,26 +36,39 @@ export default function Auth() {
 
         const data = await res.json();
         if (res.ok) {
+            toast.success(data.message);
             router.push('/dashboard');
+        } else {
+            toast.error(data?.message);
         }
-        else alert(data.error);
     };
 
+    /**
+     * Handles user sign-in request.
+     * Initiates login process and enables MFA if required.
+     */
     const handleSignIn = async () => {
-        const res = await fetch('/api/auth/signin', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password }),
+        const res = await fetch("/api/auth/signin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
         });
 
         const data = await res.json();
-        if (res.ok) {
+
+        if (data.success) {
             setIsMfaEnabled(true);
+            toast.success(data.message);
         } else {
-            setError(data.error);
+            toast.error(data.message);
         }
     };
 
+    /**
+     * Handles OTP verification.
+     * Verifies the provided OTP with the backend API.
+     * Redirects to the dashboard on success.
+     */
     const handleOtpVerification = async () => {
         const res = await fetch('/api/auth/verify-otp', {
             method: 'POST',
@@ -52,9 +78,10 @@ export default function Auth() {
 
         const data = await res.json();
         if (res.ok) {
+            toast.success(data.message);
             router.push('/dashboard');
         } else {
-            setError(data.error);
+            toast.error(data?.message);
         }
     };
 
@@ -63,10 +90,22 @@ export default function Auth() {
             <h1 className='authPage_title'>{isSignUp ? 'Sign Up' : 'Sign In'}</h1>
 
             <div className='authPage_tabs'>
-                <button className={`btn btn-outlined ${!isSignUp ? 'active' : ''} `} onClick={() => setIsSignUp(isSignUp)}>
+                <button
+                    className={`btn btn-outlined ${!isSignUp ? 'active' : ''}`}
+                    onClick={() => {
+                        setIsSignUp(false);
+                        setIsMfaEnabled(false);
+                    }}
+                >
                     {'Switch to Sign In'}
                 </button>
-                <button className={`btn btn-outlined ${isSignUp ? 'active' : ''} `} onClick={() => setIsSignUp(!isSignUp)}>
+                <button
+                    className={`btn btn-outlined ${isSignUp ? 'active' : ''}`}
+                    onClick={() => {
+                        setIsSignUp(true);
+                        setIsMfaEnabled(false);
+                    }}
+                >
                     {'Switch to Sign Up'}
                 </button>
             </div>
@@ -92,6 +131,16 @@ export default function Auth() {
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                             />
                         </div>
+
+                        <div className='formGroup'>
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
                     </>
                 )}
 
@@ -103,15 +152,6 @@ export default function Auth() {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className='formGroup'>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
 
