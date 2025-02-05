@@ -36,57 +36,90 @@ export default function Home() {
 
             {/* Summary Section */}
             {summaryData && (
-                <div className='section summary-section'>
+                <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ ease: "easeInOut", duration:1, delay: 0.1 }} className='section summary-section'>
                     <h2 className='section-title'>Summary</h2>
                     <div className='grid summary-grid'>
-                    <motion.div
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ ease: "easeInOut", duration: 0.75 }}
-     className='summary-item'>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ ease: "easeInOut", duration:1, delay: 0.1 }}
+                            className='summary-item'>
                             <p className='summary-label'>Total Tables</p>
                             <p className='summary-value'>{summaryData.totalTables}</p>
-                            </motion.div>
-                        <div className='summary-item'>
+                        </motion.div>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ ease: "easeInOut", duration:1, delay: 0.2 }}
+                            className='summary-item'>
                             <p className='summary-label'>Tables with RLS</p>
                             <p className='summary-value'>{summaryData.tablesWithRLS}</p>
-                        </div>
-                        <div className='summary-item'>
+                        </motion.div>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ ease: "easeInOut", duration:1, delay: 0.3 }}
+                            className='summary-item'>
                             <p className='summary-label'>Tables without RLS</p>
                             <p className='summary-value'>{summaryData.tablesWithoutRLS}</p>
-                        </div>
-                        <div className='summary-item'>
+                        </motion.div>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ ease: "easeInOut", duration:1, delay: 0.4 }}
+                            className='summary-item'>
                             <p className='summary-label'>RLS Adoption Rate</p>
                             <p className='summary-value'>{securityChecks?.rls_adoption_rate}</p>
-                        </div>
+                        </motion.div>
                     </div>
-                </div>
+                </motion.div>
             )}
 
             {/* Security Checks */}
             {securityChecks && (
-                <div className='section security-checks'>
+                <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ ease: "easeInOut", duration:1.1, delay: 1 }} className='section security-checks'>
                     <h2 className='section-title'>Security Checks</h2>
                     <div className='grid security-grid'>
-                        <div className='security-item'>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }} 
+                            transition={{ ease: "easeInOut", duration:1, delay: 1.1 }}
+                            className='security-item'>
                             <p className='security-label'>Auth Status</p>
                             <p className='security-value'>{securityChecks.auth_enabled ? 'Enabled' : 'Disabled'}</p>
-                        </div>
-                        <div className='security-item'>
+                        </motion.div>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }} 
+                            transition={{ ease: "easeInOut", duration:1, delay: 1.3 }}
+                            className='security-item'>
                             <p className='security-label'>Total Users</p>
                             <p className='security-value'>{securityChecks.total_users}</p>
-                        </div>
-                        <div className='security-item'>
+                        </motion.div>
+                        <motion.div
+                            initial={{ y: 20, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ ease: "easeInOut", duration:1, delay: 1.4 }}
+                            className='security-item'>
                             <p className='security-label'>Users with MFA</p>
                             <p className='security-value'>{securityChecks.users_with_mfa}</p>
-                        </div>
+                        </motion.div>
                     </div>
-                </div>
+                </motion.div>
             )}
 
             {/* Recommendations */}
             {recommendations.length > 0 && (
-                <div className='section recommendations'>
+                <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ ease: "easeInOut", duration:1.2, delay: 1.4 }} className='section recommendations'>
                     <h2 className='section-title'>Security Recommendations</h2>
                     <div className="recommendation-wrap">
                     {recommendations.map((rec, index) => (
@@ -98,7 +131,7 @@ export default function Home() {
                         </div>
                     ))}
                     </div>
-                </div>
+                </motion.div>
             )}
 
             {/* Users and Tables */}

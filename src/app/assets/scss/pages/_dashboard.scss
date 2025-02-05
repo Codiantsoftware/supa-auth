@@ -18,9 +18,9 @@
     }
 
     .recommendation{
-        &-wrap{display: flex;gap: 20px;}
+        &-wrap{display: flex;gap: 20px; flex-wrap: wrap;}
         &-item{
-            padding:20px;border: 1px solid rgba(0, 0, 0, 0.05); width: 50%;
+            padding:20px;border: 1px solid rgba(0, 0, 0, 0.05); flex: 0 0 49%; max-width: 49%;
             p{&:not(:last-child){margin-bottom: 10px;}}
             .status{
                 padding: 3px 15px;
