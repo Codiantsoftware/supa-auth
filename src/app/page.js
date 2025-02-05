@@ -11,14 +11,21 @@ export default function Home() {
 
   return (
     <div className="authPage">
+      <div className="container">
       <div className="authPage_inner">
-      <h1 className="authPage_title">Welcome to Our App</h1>
-      <p className="authPage_para">
-        Getting started is easy. Just click below to log in!
-      </p>
-      <button className="btn authPage_btn" type="button" onClick={handleSignIn}>
-        Sign In
-      </button>
+        <div className="authPage_form">
+        <h1 className="authPage_title">Welcome to Our App</h1>
+        <p className="authPage_para">
+          Getting started is easy. Just click below to log in!
+        </p>
+        <button className="btn authPage_btn" type="button" onClick={handleSignIn}>
+          Sign In
+        </button>
+        </div>
+          <div className="authPage_img">
+            <img src="mainpagelogo.webp" alt="logo" />
+          </div>
+        </div>
       </div>
     </div>
   );

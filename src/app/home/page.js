@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
+import ReactApexChart from 'react-apexcharts';
 
 /**
  * Home component that displays user data stored in session storage.
@@ -29,6 +30,47 @@ export default function Home() {
             setSecurityChecks(parsedData.securityChecks || null);
         }
     }, []);
+
+     // chart
+     const [state, setState] = useState({          
+        series: [44, 55, 41],
+        options: {
+          chart: {
+            width: 380,
+            type: 'donut',
+          },
+          plotOptions: {
+            pie: {
+              startAngle: -90,
+              endAngle: 270
+            }
+          },
+          dataLabels: {
+            enabled: false
+          },
+          fill: {
+            type: 'gradient',
+          },
+          legend: {
+            formatter: function(val, opts) {
+              return val + " - " + opts.w.globals.series[opts.seriesIndex]
+            }
+          },
+          responsive: [{
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }]
+        },
+      
+      
+    });
 
     return (
         <div className='dashboardPage'>
@@ -122,6 +164,9 @@ export default function Home() {
             {recommendations.length > 0 && (
                 <div className='section recommendations'>
                     <div className="container">
+                    <div className='dashboardPage_chart' id="chart">
+                                <ReactApexChart options={state.options} series={state.series} type="donut" width={380} />
+                            </div>
                         <h2 className='section-title'><span>Security</span> Recommendations</h2>
                         <div className="recommendation-wrap">
                             {recommendations.map((rec, index) => (

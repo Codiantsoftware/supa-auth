@@ -42,12 +42,19 @@ export default function Login() {
 
     return (
         <div className='authPage'>
+             <div className="container">
+            <div className="authPage_inner">
+            <div className="authPage_form">
+            <h1 className="authPage_title">Welcome to Our App</h1>
+                <p className="authPage_para">
+                Getting started is easy. Just click below to log in!
+                </p>
             <form onSubmit={handleSubmit}>
                 <div className='formGroup'>
                     <label>Supabase URL</label>
                     <input
                         type="text"
-                        placeholder="Supabase URL"
+                        placeholder="Enter Supabase URL"
                         onChange={(e) => setCredentials({ ...credentials, url: e.target.value })}
                     />
                 </div>
@@ -55,14 +62,20 @@ export default function Login() {
                     <label>Service Role Key</label>
                     <input
                         type="text"
-                        placeholder="Service Role Key"
+                        placeholder="Enter Service Role Key"
                         onChange={(e) => setCredentials({ ...credentials, key: e.target.value })}
                     />
                 </div>
 
 
-                <button className='btn' type="submit">Authenticate</button>
+                <button className='btn authPage_btn' type="submit">Authenticate</button>
             </form>
+            </div>
+            <div className="authPage_img">
+            <img src="mainpagelogo.webp" alt="logo" />
+          </div>
+            </div>
+            </div>
         </div >
     );
 }
