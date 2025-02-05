@@ -149,24 +149,29 @@
             }
     
             .col-left {
-                max-width: 57%;
-                flex: 0 0 57%;
+                max-width: 60%;
+                flex: 0 0 60%;
+                padding-left: 12px;padding-right: 12px;
             }
     
             .col-right {
-                max-width: 43%;
-                flex: 0 0 43%;
+                max-width: 40%;
+                flex: 0 0 40%;
+                padding-left: 12px;padding-right: 12px;
             }
     
             &_left {
                 padding: 20px;
                 border-radius: 8px;
                 border: 1px solid #E1E1E1;
+                position: relative;
+                height: 100%;
             }
     
             &_right {
                 border-radius: 8px;
                 border: 1px solid #E1E1E1;
+                height: 100%;
     
                 &_inner {
                     max-height: 453px;
@@ -232,6 +237,15 @@
                 &.summeryGraph-text {
                     color: #000;
                 }
+            }
+            &_wrap{
+                display: flex;align-items: center;justify-content: center; position: relative;
+            }
+            &_card{
+                padding:20px;background-color: rgba(#E97D35, 0.1); width: 295px; border-radius: 10px;
+                position: absolute;right:30px;bottom:90px;
+                label{font-size: 20px;color:#525866;font-weight: 500; }
+                p{font-size: 26px;font-weight: 600;margin-top: 10px;}
             }
         }
 }

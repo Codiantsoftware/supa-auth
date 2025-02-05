@@ -36,7 +36,7 @@ export default function Home() {
         series: [44, 55, 41],
         options: {
             chart: {
-                width: 800,
+                width: 350, // Donut ka overall width kam karne ke liye
                 type: 'donut',
             },
             plotOptions: {
@@ -44,28 +44,22 @@ export default function Home() {
                     startAngle: -90,
                     endAngle: 270,
                     donut: {
-                        size: '80%' // Border size kam karne ke liye
+                        size: '65%' // Donut ka thickness increase karne ke liye
                     }
                 }
             },
             dataLabels: {
-                enabled: false, // Values show karne ke liye enable karein
-                formatter: (val, opts) => `${opts.w.config.labels[opts.seriesIndex]}: ${opts.w.config.series[opts.seriesIndex]}`,
-                style: {
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
+                enabled: true,
             },
             fill: {
                 type: 'gradient',
             },
             legend: {
-                fontSize: '20px', // Label ka font size bada kiya
-                offsetY: 10, // Bottom se space increase kiya
-                offsetX: -80,
-                verticalAlign: 'center',
+                fontSize: '20px',
+                offsetY: 20,
+                offsetX: -40,
                 formatter: function(val, opts) {
-                    return `${val}: ${opts.w.config.series[opts.seriesIndex]}`; // Legend ke saath value bhi dikhaye
+                    return `${val}: ${opts.w.config.series[opts.seriesIndex]}`;
                 }
             },
             labels: ["Total Tables", "Tables with RLS", "Tables without RLS"]
@@ -181,27 +175,43 @@ export default function Home() {
                 </motion.div>
             )}
 
-            {/* Recommendations */}
-            {recommendations.length > 0 && (
-                <div className='section recommendations'>
-                    <div className="container">
-                        <h2 className='section-title'>Security Recommendations</h2>
-                        <div className="recommendation-wrap">
-                            {recommendations.map((rec, index) => (
-                                <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    transition={{ ease: "easeInOut", duration:1.2, delay: 1.4 }} key={index} className='recommendation-item'>
-                                    <p className='recommendation-table'>Table: <span>{rec.table}</span> </p>
-                                    <p className='recommendation-severity'>Severity: <span className='status status-danger'>{rec.severity}</span></p>
-                                    <p className='recommendation-text'>{rec.recommendation}</p>
-                                    <p className='recommendation-details'>{rec.details}</p>
-                                    </motion.div>
-                            ))}
+            <section className='summeryGraph'>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-left">
+                            <div className='summeryGraph_left'>
+                                <h2>Summary</h2>
+                                <div className="summeryGraph_wrap" >
+                                    <ReactApexChart options={state.options} series={state.series} type="donut" width={600}  />
+                                </div>
+                                <div className="summeryGraph_card">
+                                    <label>RLS Adoption Rate</label>
+                                    <p>0.0%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-right">
+                            <div className="summeryGraph_right">
+                            <div className="summeryGraph_right_inner">
+                                {recommendations.map((rec, index) => (
+                                    <div key={index} className='summeryGraph-item'>
+                                        <div className="summeryGraph-user">
+                                            <img src="user-1.png" alt="" />
+                                        </div>
+                                        <div>
+                                        <p className='summeryGraph-table'>Table: <span>{rec.table}</span> </p>
+                                        <p className='summeryGraph-severity'>Severity: <span className='status status-danger'>{rec.severity}</span></p>
+                                        <p className='summeryGraph-text'>{rec.recommendation}</p>
+                                        <p className='summeryGraph-details'>{rec.details}</p>                                        
+                                        </div>
+                                    </div>
+                                ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            )}
+            </section>
 
             {/* Users and Tables */}
             <div className='section users-tables'>
@@ -249,37 +259,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <section className='summeryGraph'>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-left">
-                            <div className='summeryGraph_left'>
-                                <h2>Summary</h2>
-                                <ReactApexChart options={state.options} series={state.series} type="donut" width={550}  />
-                            </div>
-                        </div>
-                        <div className="col-right">
-                            <div className="summeryGraph_right">
-                            <div className="summeryGraph_right_inner">
-                                {recommendations.map((rec, index) => (
-                                    <div key={index} className='summeryGraph-item'>
-                                        <div className="summeryGraph-user">
-                                            <img src="user-1.png" alt="" />
-                                        </div>
-                                        <div>
-                                        <p className='summeryGraph-table'>Table: <span>{rec.table}</span> </p>
-                                        <p className='summeryGraph-severity'>Severity: <span className='status status-danger'>{rec.severity}</span></p>
-                                        <p className='summeryGraph-text'>{rec.recommendation}</p>
-                                        <p className='summeryGraph-details'>{rec.details}</p>                                        
-                                        </div>
-                                    </div>
-                                ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            
         </div>
     );
 }
