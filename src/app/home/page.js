@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
 
 /**
  * Home component that displays user data stored in session storage.
@@ -31,17 +32,21 @@ export default function Home() {
 
     return (
         <div className='dashboardPage'>
-            <h1 className='page-title'>Security Audit Dashboard</h1>
+            <div className="container"><h1 className='page-title'><span>Security</span> Audit Dashboard</h1></div>
 
             {/* Summary Section */}
             {summaryData && (
                 <div className='section summary-section'>
                     <h2 className='section-title'>Summary</h2>
                     <div className='grid summary-grid'>
-                        <div className='summary-item'>
+                    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75 }}
+     className='summary-item'>
                             <p className='summary-label'>Total Tables</p>
                             <p className='summary-value'>{summaryData.totalTables}</p>
-                        </div>
+                            </motion.div>
                         <div className='summary-item'>
                             <p className='summary-label'>Tables with RLS</p>
                             <p className='summary-value'>{summaryData.tablesWithRLS}</p>
@@ -83,14 +88,16 @@ export default function Home() {
             {recommendations.length > 0 && (
                 <div className='section recommendations'>
                     <h2 className='section-title'>Security Recommendations</h2>
+                    <div className="recommendation-wrap">
                     {recommendations.map((rec, index) => (
                         <div key={index} className='recommendation-item'>
-                            <p className='recommendation-table'>Table: {rec.table}</p>
-                            <p className='recommendation-severity'>Severity: {rec.severity}</p>
+                            <p className='recommendation-table'>Table: <span>{rec.table}</span> </p>
+                            <p className='recommendation-severity'>Severity: <span className='status status-danger'>{rec.severity}</span></p>
                             <p className='recommendation-text'>{rec.recommendation}</p>
                             <p className='recommendation-details'>{rec.details}</p>
                         </div>
                     ))}
+                    </div>
                 </div>
             )}
 
