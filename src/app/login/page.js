@@ -73,10 +73,9 @@ export default function Login() {
                         </form>
                     </div>
                     <div className="authPage_img">
-                        {/* <img src="mainpagelogo.webp" alt="logo" /> */}
                         <motion.img
                             src="mainpagelogo.webp"
-                            alt="Shaking Image"
+                            alt="logo"
                             initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }} 
                                 transition={{ ease: "easeInOut", duration:1, delay: 0.1 }}
