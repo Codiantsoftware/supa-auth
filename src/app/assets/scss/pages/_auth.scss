@@ -1,0 +1,23 @@
+.authPage{
+    background-color: #000;
+    &_inner{
+        max-width: 500px;
+        text-align: center;
+    }
+    &_title{
+        color: #fff;
+        font-size: 35px;
+        margin-bottom: 20px;
+        font-family: 'General Sans Bold';
+    
+    }
+    &_para{
+        color: #ffffffa2;
+        margin-bottom: 30px;      
+    }
+    &_btn{
+        min-width: 200px;
+        font-size: 18px;
+        height: 50px;
+    }
+}

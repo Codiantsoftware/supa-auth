@@ -10,14 +10,16 @@ export default function Home() {
   };
 
   return (
-    <div className="mainPage">
-      <h1 className="mainPage_title">Welcome to Our App</h1>
-      <p className="mainPage_para">
+    <div className="authPage">
+      <div className="authPage_inner">
+      <h1 className="authPage_title">Welcome to Our App</h1>
+      <p className="authPage_para">
         Getting started is easy. Just click below to log in!
       </p>
-      <button className="btn" type="button" onClick={handleSignIn}>
+      <button className="btn authPage_btn" type="button" onClick={handleSignIn}>
         Sign In
       </button>
+      </div>
     </div>
   );
 }
