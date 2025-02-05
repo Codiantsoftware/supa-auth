@@ -73,13 +73,14 @@ export default function Login() {
                         </form>
                     </div>
                     <div className="authPage_img">
-                        <motion.img
-                            src="mainpagelogo.webp"
-                            alt="logo"
-                            initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }} 
-                                transition={{ ease: "easeInOut", duration:1, delay: 0.1 }}
-                            />
+                    <motion.img
+                        src="mainpagelogo.webp"
+                        alt="logo"
+                        initial={{ y: 20, opacity: 0, scale: 0.5 }} 
+                        animate={{ y: 0, opacity: 1, scale: 1 }}  
+                        transition={{ ease: "easeInOut", duration: 1.3, delay: 0.1 }}
+                        />
+
                     </div>
                 </div>
             </div>
