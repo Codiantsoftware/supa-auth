@@ -30,7 +30,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className='authPage'>
+        <div className='dashboardPage'>
             <h1 className='page-title'>Security Audit Dashboard</h1>
 
             {/* Summary Section */}
