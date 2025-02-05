@@ -13,21 +13,27 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 async function getAISuggestion(issue) {
     const prompt = `As a security expert for Supabase, recommend steps to resolve: ${issue}`;
 
-    const response = await openai.chat.completions.create({
+    const response = await this.openai.chat.completions.create({
         model: 'gpt-4o',
         messages: [
             {
                 role: 'system',
-                content: `You are a helpful assistant specializing in Supabase security and related queries...`
+                content: `You are a helpful assistant that responds using markdown formatting.
+                Prioritize the current query asked by the user and relate only information from previous related conversation queries, focusing only on the user's input.
+                For the keywords, extract **only** the exact words or phrases used in the user's query, **do not infer additional terms**.
+                If there are any spelling mistakes, correct them but still use the corrected words as keywords.
+                Provide your response prefixed with "Guide:" followed by the content.
+                Also, include a "Keyword:" section, listing only the keywords found **directly** in the user query.`
             },
-            { role: 'user', content: issue }
+            ...session.history,
+            { role: 'user', content: data?.prompt }
         ],
-        stream: false, // Change to false for normal response
+        stream: true,
         response_format: { type: 'text' },
         temperature: 0.7,
         top_p: 1
     });
-
+    
     return response.choices[0].message?.content || "No response";
 }
 
