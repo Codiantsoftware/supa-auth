@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
-import ReactApexChart from 'react-apexcharts';
 
 /**
  * Home component that displays user data stored in session storage.
@@ -31,47 +30,6 @@ export default function Home() {
         }
     }, []);
 
-     // chart
-     const [state, setState] = useState({          
-        series: [44, 55, 41],
-        options: {
-          chart: {
-            width: 380,
-            type: 'donut',
-          },
-          plotOptions: {
-            pie: {
-              startAngle: -90,
-              endAngle: 270
-            }
-          },
-          dataLabels: {
-            enabled: false
-          },
-          fill: {
-            type: 'gradient',
-          },
-          legend: {
-            formatter: function(val, opts) {
-              return val + " - " + opts.w.globals.series[opts.seriesIndex]
-            }
-          },
-          responsive: [{
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200
-              },
-              legend: {
-                position: 'bottom'
-              }
-            }
-          }]
-        },
-      
-      
-    });
-
     return (
         <div className='dashboardPage'>
             <div className="container"><h1 className='page-title'><span>Security</span> Audit Dashboard</h1></div>
@@ -90,32 +48,44 @@ export default function Home() {
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ ease: "easeInOut", duration:1, delay: 0.1 }}
                                     className='summary-item'>
-                                    <p className='summary-label'>Total Tables</p>
-                                    <p className='summary-value'>{summaryData.totalTables}</p>
+                                        <img src="table-img-1.png" className='summary-icon' alt="img" />
+                                        <div>
+                                            <p className='summary-label'>Total Tables</p>
+                                            <p className='summary-value'>{summaryData.totalTables}</p>
+                                    </div>
                                 </motion.div>
                                 <motion.div
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ ease: "easeInOut", duration:1, delay: 0.2 }}
-                                    className='summary-item'>
+                                    className='summary-item purple'>
+                                        <img src="table-img-2.png" className='summary-icon' alt="img" />
+                                        <div>
                                     <p className='summary-label'>Tables with RLS</p>
                                     <p className='summary-value'>{summaryData.tablesWithRLS}</p>
+                                    </div>
                                 </motion.div>
                                 <motion.div
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ ease: "easeInOut", duration:1, delay: 0.3 }}
-                                    className='summary-item'>
-                                    <p className='summary-label'>Tables without RLS</p>
-                                    <p className='summary-value'>{summaryData.tablesWithoutRLS}</p>
+                                    className='summary-item red'>
+                                        <img src="table-img-3.png" className='summary-icon' alt="img" />
+                                        <div>
+                                        <p className='summary-label'>Tables without RLS</p>
+                                        <p className='summary-value'>{summaryData.tablesWithoutRLS}</p>
+                                    </div>
                                 </motion.div>
                                 <motion.div
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ ease: "easeInOut", duration:1, delay: 0.4 }}
-                                    className='summary-item'>
-                                    <p className='summary-label'>RLS Adoption Rate</p>
-                                    <p className='summary-value'>{securityChecks?.rls_adoption_rate}</p>
+                                    className='summary-item orange'>
+                                        <img src="table-img-4.png" className='summary-icon' alt="img" />
+                                        <div>
+                                        <p className='summary-label'>RLS Adoption Rate</p>
+                                        <p className='summary-value'>{securityChecks?.rls_adoption_rate}</p>
+                                    </div>
                                 </motion.div>
                             </div>
                     </div>
@@ -130,30 +100,39 @@ export default function Home() {
                 transition={{ ease: "easeInOut", duration:1.1, delay: 1 }} className='section security-checks'>
                     <div className="container">
                         <h2 className='section-title'><span>Security</span> Checks</h2>
-                        <div className='grid security-grid'>
+                        <div className='grid security-grid lg'>
                             <motion.div
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }} 
                                 transition={{ ease: "easeInOut", duration:1, delay: 1.1 }}
                                 className='security-item'>
-                                <p className='security-label'>Auth Status</p>
-                                <p className='security-value'>{securityChecks.auth_enabled ? 'Enabled' : 'Disabled'}</p>
+                                <div>
+                                    <p className='security-label'>Auth Status</p>
+                                    <p className='security-value'>{securityChecks.auth_enabled ? 'Enabled' : 'Disabled'}</p>
+                                </div>
+                                <img src="enabled.png" alt="img" />
                             </motion.div>
                             <motion.div
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }} 
                                 transition={{ ease: "easeInOut", duration:1, delay: 1.3 }}
-                                className='security-item'>
-                                <p className='security-label'>Total Users</p>
-                                <p className='security-value'>{securityChecks.total_users}</p>
+                                className='security-item purple'>
+                                <div>
+                                    <p className='security-label'>Total Users</p>
+                                    <p className='security-value'>{securityChecks.total_users}</p>
+                                </div>
+                                <img src="user.png" alt="img" />
                             </motion.div>
                             <motion.div
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ ease: "easeInOut", duration:1, delay: 1.4 }}
-                                className='security-item'>
-                                <p className='security-label'>Users with MFA</p>
-                                <p className='security-value'>{securityChecks.users_with_mfa}</p>
+                                className='security-item red'>
+                                <div>
+                                    <p className='security-label'>Users with MFA</p>
+                                    <p className='security-value'>{securityChecks.users_with_mfa}</p>
+                                </div>
+                                <img src="user-mfa.png" alt="img" />
                             </motion.div>
                         </div>
                     </div>
@@ -164,9 +143,6 @@ export default function Home() {
             {recommendations.length > 0 && (
                 <div className='section recommendations'>
                     <div className="container">
-                    <div className='dashboardPage_chart' id="chart">
-                                <ReactApexChart options={state.options} series={state.series} type="donut" width={380} />
-                            </div>
                         <h2 className='section-title'><span>Security</span> Recommendations</h2>
                         <div className="recommendation-wrap">
                             {recommendations.map((rec, index) => (
