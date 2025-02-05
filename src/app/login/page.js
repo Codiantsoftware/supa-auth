@@ -44,50 +44,46 @@ export default function Login() {
     return (
         <div className='authPage'>
              <div className="container">
-            <div className="authPage_inner">
-            <div className="authPage_form">
-            <h1 className="authPage_title">Welcome to Our App</h1>
-                <p className="authPage_para">
-                Getting started is easy. Just click below to log in!
-                </p>
-            <form onSubmit={handleSubmit}>
-                <div className='formGroup'>
-                    <label>Supabase URL</label>
-                    <input
-                        type="text"
-                        placeholder="Enter Supabase URL"
-                        onChange={(e) => setCredentials({ ...credentials, url: e.target.value })}
-                    />
-                </div>
-                <div className='formGroup'>
-                    <label>Service Role Key</label>
-                    <input
-                        type="text"
-                        placeholder="Enter Service Role Key"
-                        onChange={(e) => setCredentials({ ...credentials, key: e.target.value })}
-                    />
-                </div>
+                <div className="authPage_inner">
+                    <div className="authPage_form">
+                        <h1 className="authPage_title">Welcome to Our App</h1>
+                        <p className="authPage_para">
+                        Getting started is easy. Just click below to log in!
+                        </p>
+                        <form onSubmit={handleSubmit}>
+                            <div className='formGroup'>
+                                <label>Supabase URL</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Supabase URL"
+                                    onChange={(e) => setCredentials({ ...credentials, url: e.target.value })}
+                                />
+                            </div>
+                            <div className='formGroup'>
+                                <label>Service Role Key</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Service Role Key"
+                                    onChange={(e) => setCredentials({ ...credentials, key: e.target.value })}
+                                />
+                            </div>
 
 
-                <button className='btn authPage_btn' type="submit">Authenticate</button>
-            </form>
+                            <button className='btn authPage_btn' type="submit">Authenticate</button>
+                        </form>
+                    </div>
+                    <div className="authPage_img">
+                    <motion.img
+                        src="mainpagelogo.webp"
+                        alt="logo"
+                        initial={{ y: 20, opacity: 0, scale: 0.5 }} 
+                        animate={{ y: 0, opacity: 1, scale: 1 }}  
+                        transition={{ ease: "easeInOut", duration: 1.3, delay: 0.1 }}
+                        />
+
+                    </div>
+                </div>
             </div>
-            <div className="authPage_img">
-            {/* <img src="mainpagelogo.webp" alt="logo" /> */}
-            <motion.img
-                src="mainpagelogo.webp"
-                alt="Shaking Image"
-                className="w-64 h-64"
-                animate={{ x: [0, -5, 5, -5, 5, 0] }} // Shake left-right
-                transition={{
-                    duration: 0.7, // Smooth duration
-                    ease: "easeInOut",
-                    repeat: Infinity, // Infinite shake
-                }}
-                />
-          </div>
-            </div>
-            </div>
-        </div >
+        </div>
     );
 }
