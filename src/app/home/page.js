@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
+import ReactApexChart from 'react-apexcharts';
 
 /**
  * Home component that displays user data stored in session storage.
@@ -29,6 +30,47 @@ export default function Home() {
             setSecurityChecks(parsedData.securityChecks || null);
         }
     }, []);
+
+    // chart
+    const [state, setState] = useState({          
+        series: [44, 55, 41],
+        options: {
+            chart: {
+                width: 800,
+                type: 'donut',
+            },
+            plotOptions: {
+                pie: {
+                    startAngle: -90,
+                    endAngle: 270,
+                    donut: {
+                        size: '80%' // Border size kam karne ke liye
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: false, // Values show karne ke liye enable karein
+                formatter: (val, opts) => `${opts.w.config.labels[opts.seriesIndex]}: ${opts.w.config.series[opts.seriesIndex]}`,
+                style: {
+                    fontSize: '14px',
+                    fontWeight: 'bold'
+                }
+            },
+            fill: {
+                type: 'gradient',
+            },
+            legend: {
+                fontSize: '20px', // Label ka font size bada kiya
+                offsetY: 10, // Bottom se space increase kiya
+                offsetX: -80,
+                verticalAlign: 'center',
+                formatter: function(val, opts) {
+                    return `${val}: ${opts.w.config.series[opts.seriesIndex]}`; // Legend ke saath value bhi dikhaye
+                }
+            },
+            labels: ["Total Tables", "Tables with RLS", "Tables without RLS"]
+        },
+    });
 
     return (
         <div className='dashboardPage'>
@@ -99,7 +141,7 @@ export default function Home() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ ease: "easeInOut", duration:1.1, delay: 1 }} className='section security-checks'>
                     <div className="container">
-                        <h2 className='section-title'><span>Security</span> Checks</h2>
+                        <h2 className='section-title'>Security Checks</h2>
                         <div className='grid security-grid lg'>
                             <motion.div
                                 initial={{ y: 20, opacity: 0 }}
@@ -143,7 +185,7 @@ export default function Home() {
             {recommendations.length > 0 && (
                 <div className='section recommendations'>
                     <div className="container">
-                        <h2 className='section-title'><span>Security</span> Recommendations</h2>
+                        <h2 className='section-title'>Security Recommendations</h2>
                         <div className="recommendation-wrap">
                             {recommendations.map((rec, index) => (
                                 <motion.div
@@ -164,7 +206,7 @@ export default function Home() {
             {/* Users and Tables */}
             <div className='section users-tables'>
                 <div className="container">
-                    <h2 className='section-title'><span>Users</span> and Tables</h2>
+                    <h2 className='section-title'>Users and Tables</h2>
                     <table className="user-table">
                         <thead>
                             <tr className='table-header'>
@@ -206,6 +248,38 @@ export default function Home() {
                     </table>
                 </div>
             </div>
+
+            <section className='summeryGraph'>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-left">
+                            <div className='summeryGraph_left'>
+                                <h2>Summary</h2>
+                                <ReactApexChart options={state.options} series={state.series} type="donut" width={550}  />
+                            </div>
+                        </div>
+                        <div className="col-right">
+                            <div className="summeryGraph_right">
+                            <div className="summeryGraph_right_inner">
+                                {recommendations.map((rec, index) => (
+                                    <div key={index} className='summeryGraph-item'>
+                                        <div className="summeryGraph-user">
+                                            <img src="user-1.png" alt="" />
+                                        </div>
+                                        <div>
+                                        <p className='summeryGraph-table'>Table: <span>{rec.table}</span> </p>
+                                        <p className='summeryGraph-severity'>Severity: <span className='status status-danger'>{rec.severity}</span></p>
+                                        <p className='summeryGraph-text'>{rec.recommendation}</p>
+                                        <p className='summeryGraph-details'>{rec.details}</p>                                        
+                                        </div>
+                                    </div>
+                                ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }
