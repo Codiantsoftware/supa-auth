@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { motion } from "framer-motion";
 
 /**
  * Login component for authenticating users with Supabase URL and Service Role Key.
@@ -72,7 +73,18 @@ export default function Login() {
             </form>
             </div>
             <div className="authPage_img">
-            <img src="mainpagelogo.webp" alt="logo" />
+            {/* <img src="mainpagelogo.webp" alt="logo" /> */}
+            <motion.img
+                src="mainpagelogo.webp"
+                alt="Shaking Image"
+                className="w-64 h-64"
+                animate={{ x: [0, -5, 5, -5, 5, 0] }} // Shake left-right
+                transition={{
+                    duration: 0.7, // Smooth duration
+                    ease: "easeInOut",
+                    repeat: Infinity, // Infinite shake
+                }}
+                />
           </div>
             </div>
             </div>
