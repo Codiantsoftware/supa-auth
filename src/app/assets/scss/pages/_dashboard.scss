@@ -1,8 +1,8 @@
 .dashboardPage{
-    // padding-top: 40px;
+    padding-top: 40px;
     font-family: 'General Sans';
     .page-title{
-        font-size: 40px;font-weight: 500;
+        font-size: 40px;font-weight: 600;
         color: #000;
         span{color:$blue;}
         font-family: 'General Sans Medium';
@@ -176,12 +176,7 @@
             border: 1px solid #E1E1E1;
             position: relative;
             height: 100%;
-            h2{
-                font-family: "General Sans Medium";
-                font-weight: 600;
-                font-size: 26px;
-                color: #000;
-            }
+            
         }
 
         &_right {
@@ -261,6 +256,7 @@
             label{font-size: 20px;color:#525866;font-family: "General Sans"; }
             p{font-size: 26px;font-family: "General Sans Medium";margin: 5px 0 0; line-height: 1.2  ;}
         }
+        &-details{margin-bottom: 0;}
     }    
     @media (max-width: 1399px){
         .container{
@@ -324,7 +320,7 @@
         }
     }
     @media (max-width: 1199px){
-        // padding-top: 30px;
+        padding-top: 30px;
         .page{
             &-title{
                 font-size: 28px;
@@ -368,6 +364,8 @@
         
     }
     @media (max-width: 991px){
+        padding-top: 20px;
+        .page-title{font-size: 24px;}
         .section{
             padding: 30px 0;
                 &-title{
@@ -390,8 +388,39 @@
                 }
             }
             &_card{
-                bottom: 30px;
+                width: 215px;bottom: 30px; padding:15px;right:13%;
+                label{font-size: 16px;}
+                p{font-size: 20px;}
             }
+            
+        }
+        .summary, .security{
+            &-value{
+                font-size: 20px;
+            }
+        }
+    }
+
+    @media (max-width: 767px){
+        .summeryGraph{
+            &_card{
+                position: initial;margin: 10px auto 0;
+            }
+        }
+    }
+    @media (max-width: 576px){
+        .summary-grid, .security-grid{
+            grid-template-columns: repeat(1, 1fr);
+        }        
+        .section{
+            padding: 20px 0;
+            &-title{font-size: 20px;}
+        }
+        .summeryGraph{
+            &-item{
+                flex-direction: column;
+            }
+            &-user{margin:0 0 10px ;}
         }
     }
 }

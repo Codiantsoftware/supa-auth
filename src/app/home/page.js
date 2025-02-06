@@ -38,7 +38,7 @@ export default function Home() {
     series: [44, 55, 41],
     options: {
       chart: {
-        width: 350, // Donut ka overall width kam karne ke liye
+        width: 350, // Adjusts donut size
         type: "donut",
       },
       plotOptions: {
@@ -46,7 +46,7 @@ export default function Home() {
           startAngle: -90,
           endAngle: 270,
           donut: {
-            size: "65%", // Donut ka thickness increase karne ke liye
+            size: "65%", // Adjust thickness
           },
         },
       },
@@ -65,16 +65,63 @@ export default function Home() {
           return `${val}: ${opts.w.config.series[opts.seriesIndex]}`;
         },
         itemMargin: {
-          horizontal: 20, // Space between legend items horizontally
-          vertical: 13, // Space between legend items vertically
+          horizontal: 20,
+          vertical: 13,
         },
         markers: {
-          offsetX: -2, // Move marker further left to create more space
+          offsetX: -2,
         },
       },
       labels: ["Total Tables", "Tables with RLS", "Tables without RLS"],
+      responsive: [
+        {
+          breakpoint: 991, // Adjust this value as per your requirement
+          options: {
+            chart: {
+              width: 550, // Adjust chart size for small screens
+            },
+            legend: {
+              fontSize: "16px",
+            },
+          },
+        },
+        {
+          breakpoint: 767, // Another smaller breakpoint for mobile screens
+          options: {
+            chart: {
+              width: 500, // Further reduce size
+            },
+            legend: {
+              fontSize: "14px",
+              position: "bottom",
+              itemMargin: {
+                horizontal: 5,
+                vertical: 0,
+              },
+            },
+          },
+        },
+        {
+          breakpoint: 576, // Another smaller breakpoint for mobile screens
+          options: {
+            chart: {
+              width: 300, // Further reduce size
+            },
+            legend: {
+              itemMargin: {
+                horizontal: 5,
+                vertical: 5,
+              },
+              markers: {
+                size: 6, 
+              },
+            }
+          },
+        },
+      ],
     },
   });
+  
 
   // modal
   const [show, setShow] = useState(false);
@@ -95,6 +142,8 @@ export default function Home() {
   return (
     <>
       <div className="dashboardPage">
+      <div className="container"><h1 className='page-title'><span>Security</span> Audit Dashboard</h1></div>
+ 
         {/* Summary Section */}
         {summaryData && (
           <motion.div
@@ -247,7 +296,7 @@ export default function Home() {
             <div className="row">
               <div className="col-left">
                 <div className="summeryGraph_left">
-                  <h2>Summary</h2>
+                  <h2 className="section-title">Summary</h2>
                   <div className="summeryGraph_wrap">
                     <ReactApexChart
                       options={state.options}
@@ -514,7 +563,7 @@ export default function Home() {
           </div>
           <div className="chatBot_body">
             <div className="chatBot_body_send ">
-              <img src="user-1.png" alt="user" />
+              <img src="logo.png" alt="company" />
               <div className="chatBot_body_msg">
                 <span>
                   Hello, how can I help you? Hello, how can I help you?Hello,
@@ -523,55 +572,50 @@ export default function Home() {
               </div>
             </div>
             <div className="chatBot_body_receive ">
-              <img src="user-1.png" alt="user" />
               <div className="chatBot_body_msg">
                 <span>yes</span>
               </div>
             </div>
             <div className="chatBot_body_send ">
-              <img src="user-1.png" alt="user" />
+              <img src="logo.png" alt="company" />
               <div className="chatBot_body_msg">
                 <span>Hello, how can I help you?</span>
               </div>
             </div>
             <div className="chatBot_body_receive ">
-              <img src="user-1.png" alt="user" />
               <div className="chatBot_body_msg">
                 <span>yes</span>
               </div>
             </div>
             <div className="chatBot_body_send ">
-              <img src="user-1.png" alt="user" />
+              <img src="logo.png" alt="company" />
               <div className="chatBot_body_msg">
                 <span>Hello, how can I help you?</span>
               </div>
             </div>
             <div className="chatBot_body_receive ">
-              <img src="user-1.png" alt="user" />
               <div className="chatBot_body_msg">
                 <span>yes</span>
               </div>
             </div>
             <div className="chatBot_body_send ">
-              <img src="user-1.png" alt="user" />
+              <img src="logo.png" alt="company" />
               <div className="chatBot_body_msg">
                 <span>Hello, how can I help you?</span>
               </div>
             </div>
             <div className="chatBot_body_receive ">
-              <img src="user-1.png" alt="user" />
               <div className="chatBot_body_msg">
                 <span>yes</span>
               </div>
             </div>
             <div className="chatBot_body_send ">
-              <img src="user-1.png" alt="user" />
+              <img src="logo.png" alt="company" />
               <div className="chatBot_body_msg">
                 <span>Hello, how can I help you?</span>
               </div>
             </div>
             <div className="chatBot_body_receive ">
-              <img src="user-1.png" alt="user" />
               <div className="chatBot_body_msg">
                 <span>yes</span>
               </div>

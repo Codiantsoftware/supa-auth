@@ -22,7 +22,6 @@
           height: 64px;
           border-radius: 50%;
           background-color: #007cf5;
-          margin-top: 20px;
           border: 0;
           position: fixed;
           bottom: 20px;
@@ -121,4 +120,45 @@
           }
           
       }
+
+    @media (max-width: 767px) {
+        &_link{
+            width: 50px;height: 50px;
+            svg{width: 18px;}
+        }
+        &_header{
+            padding:10px 15px;
+            h3{font-size: 20px;}
+        }
+        &_box{
+            width: 320px;height: 290px;
+        }
+        &_body{
+            height: calc(100% - 92px);
+            img{width: 30px;height: 30px;}
+            &_send, &_receive{
+                margin-bottom: 10px;
+            }
+            &_msg span{
+                padding:10px;
+            }
+        }
+        &_footer{
+            height: 50px;padding:5px 15px;
+            input{
+                height: 40px;font-size: 14px;
+            }
+            &_sendBtn{
+                width: 30px;height: 30px;
+                svg{width: 13px;}
+            }
+        }
+    }
+
+    @media (max-width: 567px) {
+        &_header{
+            h3{font-size: 18px;}
+        }
+    }
+    
   }
