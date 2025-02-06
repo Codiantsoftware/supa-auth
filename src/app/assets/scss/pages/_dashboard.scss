@@ -1,5 +1,5 @@
 .dashboardPage{
-    padding-top: 40px;
+    // padding-top: 40px;
     $blue:#007cf5;
     font-family: 'General Sans';
     .page-title{
@@ -24,6 +24,24 @@
     }
     .section{
         box-shadow: none; padding:60px 0; margin-bottom: 0;
+        &-head{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .btn{
+                height: 44px;
+                font-size: 18px;
+                font-family: "General Sans medium";
+                padding: 7px 20px;
+                margin-bottom: 20px;
+                background-color: $blue;
+                color: #fff;
+                border-radius: 8px;
+                &:hover{
+                    background-color: lighten($blue, 1.9);
+                }
+            }
+        }
         &-title{font-size: 26px;font-family: 'General Sans Medium'; margin-bottom: 20px; span{color:$blue;}}
     }
     .container{
@@ -311,7 +329,7 @@
         }
     }
     @media (max-width: 1199px){
-        padding-top: 30px;
+        // padding-top: 30px;
         .page{
             &-title{
                 font-size: 28px;

@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 import ReactApexChart from 'react-apexcharts';
+import Modal from 'react-bootstrap/Modal';
+
 
 /**
  * Home component that displays user data stored in session storage.
@@ -74,9 +76,16 @@ export default function Home() {
         },
     });
 
+    // modal
+    const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
     return (
+        <>
         <div className='dashboardPage'>
-            <div className="container"><h1 className='page-title'><span>Security</span> Audit Dashboard</h1></div>
+            {/* <div className="container"><h1 className='page-title'><span>Security</span> Audit Dashboard</h1></div> */}
 
             {/* Summary Section */}
             {summaryData && (
@@ -85,7 +94,11 @@ export default function Home() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ ease: "easeInOut", duration:1, delay: 0.1 }} className='section summary-section'>
                     <div className="container">
-                        <h2 className='section-title'>Summary</h2>
+                        <div className="section-head">
+                            <h2 className='section-title'>Summary</h2>
+                            <button className='btn' onClick={handleShow}>Quick Fix</button>
+
+                        </div>
                             <div className='grid summary-grid'>
                                 <motion.div
                                     initial={{ y: 20, opacity: 0 }}
@@ -267,9 +280,17 @@ export default function Home() {
                     </table>
                     </div>
                 </div>
-            </div>
-
-            
+            </div>            
         </div>
+            {/* modal */}
+            <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+            <Modal.Footer>
+            </Modal.Footer>
+  </Modal>
+  </>
     );
 }
