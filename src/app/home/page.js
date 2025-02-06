@@ -81,6 +81,13 @@ export default function Home() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+    // chat box
+    const [isFormVisible, setIsFormVisible] = useState(false);
+
+    const handleToggle = (event) => {
+        event.preventDefault();
+        setIsFormVisible((prev) => !prev);
+    };
 
     return (
         <>
@@ -291,6 +298,91 @@ export default function Home() {
             <Modal.Footer>
             </Modal.Footer>
   </Modal>
+
+  <div className="chatBot d-flex flex-column align-items-center">
+        <button type="button" id="toggleLink" aria-label="Chat Button" className="btn-link chatBot_link d-flex align-items-center justify-content-center" onClick={handleToggle}>
+            <svg width="25px" height="25px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.49933C0 0.670226 0.671178 0 1.5 0H13.5C14.3288 0 15 0.670226 15 1.49933V10.4935C15 11.3226 14.3288 11.9928 13.5 11.9928H7.66658L3.79988 14.8909C3.64835 15.0045 3.44568 15.0227 3.27632 14.938C3.10697 14.8533 3 14.6802 3 14.4908V11.9928H1.5C0.671178 11.9928 0 11.3226 0 10.4935V1.49933ZM4 3.99738H11V4.99738H4V3.99738ZM4 6.99542H9V7.99542H4V6.99542Z" fill="#fff"/>
+            </svg>
+        </button>
+        <div className={`chatBot_box ${isFormVisible ? "open" : ""}` }  >
+            <div className="chatBot_header">
+                <h3 >ChatBot</h3>
+                <div className="closeIcon" onClick={handleToggle}></div>
+            </div>
+            <div className="chatBot_body">
+                <div className="chatBot_body_send ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>Hello, how can I help you? Hello, how can I help you?Hello, how can I help you?Hello, how can I help you?</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_receive ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>yes</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_send ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>Hello, how can I help you?</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_receive ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>yes</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_send ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>Hello, how can I help you?</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_receive ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>yes</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_send ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>Hello, how can I help you?</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_receive ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>yes</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_send ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>Hello, how can I help you?</span>
+                    </div>
+                </div>
+                <div className="chatBot_body_receive ">
+                    <img src="user-1.png" alt="user" />
+                    <div className="chatBot_body_msg">
+                        <span>yes</span>
+                    </div>
+                </div>
+            </div>
+            <div className="chatBot_footer">
+                <input type="text" placeholder="Write your message" />
+                <button type="button" className="chatBot_footer_sendBtn" onClick={handleToggle}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18.016" height="18.014" viewBox="0 0 18.016 18.014">
+                        <path id="Path_161667" data-name="Path 161667" d="M11.549,18.015a1.655,1.655,0,0,1-1.586-1.2L8.015,10,1.2,8.052a1.659,1.659,0,0,1-.007-3.186L17.335.023a.528.528,0,0,1,.657.657L13.148,16.828A1.655,1.655,0,0,1,11.549,18.015Z" transform="translate(0.001 -0.001)" fill="#fff"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+    </div>
   </>
     );
 }
