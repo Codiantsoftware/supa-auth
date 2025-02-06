@@ -1,9 +1,10 @@
 .dashboardPage{
-    padding:40px 0;
+    padding-top: 40px;
     $blue:#007cf5;
     font-family: 'General Sans';
     .page-title{
         font-size: 40px;font-weight: 500;
+        color: #000;
         span{color:$blue;}
         font-family: 'General Sans Medium';
         margin-bottom: 0;
@@ -16,13 +17,14 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 6px;
+        border-radius: 6px;        
+        margin-left: 5px;
         &-danger{background-color: #fceceb; color:#e85347;}
         &-success{background-color: #e6fcf6; color:#1ee0ac;}
     }
     .section{
         box-shadow: none; padding:60px 0; margin-bottom: 0;
-        &-title{font-size: 26px;font-family: 'General Sans'; margin-bottom: 20px; span{color:$blue;}}
+        &-title{font-size: 26px;font-family: 'General Sans Medium'; margin-bottom: 20px; span{color:$blue;}}
     }
     .container{
         max-width: 1340px; margin:0 auto;
@@ -35,35 +37,25 @@
             border: 0;
             display: flex;
             align-items: center;
-            position: relative;
-            &::before{
-                content: '';
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                width: 85px;
-                
-                background-image: url('../../images/table-bg-1.png');
-                height: 77px;
+            position: relative;           
+            &.purple{
+                background: #693ee014;
+                &::before{                
+                    background-image: url('../../images/table-bg-2.png');
                 }
-                &.purple{
-                    background: #693ee014;
-                    &::before{                
-                        background-image: url('../../images/table-bg-2.png');
-                    }
+            }
+            &.red{
+                background: #e9354414;
+                &::before{                
+                    background-image: url('../../images/table-bg-3.png');
                 }
-                &.red{
-                    background: #e9354414;
-                    &::before{                
-                        background-image: url('../../images/table-bg-3.png');
-                    }
+            }
+            &.orange{
+                background: #e97d3514;
+                &::before{                
+                    background-image: url('../../images/table-bg-4.png');
                 }
-                &.orange{
-                    background: #e97d3514;
-                    &::before{                
-                        background-image: url('../../images/table-bg-4.png');
-                    }
-                }
+            }
         }
         // &-item{
         //     padding:20px; border: 1px solid rgb(214, 243, 255);
@@ -79,9 +71,22 @@
             height: 60px;
             width: 60px;
             margin-right: 15px;
+            object-fit: contain;
         }
         &-section{
             padding-bottom: 0!important;
+        }
+        &-item{
+            &::before{
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 85px;                
+                background-image: url('../../images/table-bg-1.png');
+                height: 77px;
+                background-repeat: no-repeat;
+            }
         }
      }
      .security{
@@ -114,15 +119,136 @@
        &-text{font-family: 'General Sans Medium'; color:#fff;}     
        &-details{color:#8d99ad;}  
     }
-
+    .users-tables-responsive{
+        max-width: 100%;
+        overflow-x: auto;
+    }
     .user-table{
         thead{
             th{
                 background-color: #eaf3ff;
             }
         }
-        .table-cell{border: 1px solid rgb(214, 243, 255);}
+        .table{
+            &-cell{
+                border: 1px solid rgb(214, 243, 255);
+                white-space: nowrap;
+            }
+            &-item{
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
     }
+    .summeryGraph {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -12px;
+            margin-right: -12px;
+        }
+
+        .col-left {
+            max-width: 60%;
+            flex: 0 0 60%;
+            padding-left: 12px;padding-right: 12px;
+        }
+
+        .col-right {
+            max-width: 40%;
+            flex: 0 0 40%;
+            padding-left: 12px;padding-right: 12px;
+        }
+
+        &_left {
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #E1E1E1;
+            position: relative;
+            height: 100%;
+        }
+
+        &_right {
+            border-radius: 8px;
+            border: 1px solid #E1E1E1;
+            height: 100%;
+
+            &_inner {
+                max-height: 453px;
+                overflow-y: auto;
+
+                &::-webkit-scrollbar {
+                    width: 6px;
+                    background-color: #F5F5F5;
+
+                    &-thumb {
+                        background-color: #AEAEAE;
+                    }
+                }
+            }
+        }
+
+        &-item {
+            padding: 25px 20px;
+            display: flex;
+            gap: 0 20px;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #E1E1E1;
+            }
+
+            p {
+                color: #525866;
+                font-size: 18px;
+
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+            }
+
+            .status {
+                border-radius: 15px;
+                font-size: 16px;
+
+                &-danger {
+                    background-color: #E93544;
+                    color: #fff;
+                }
+            }
+        }
+
+        &-user {
+            margin-top: 10px;
+        }
+
+        &-table {
+            span {
+                color: #0694FF;
+            }
+        }
+
+        &-text,
+        &-severity,
+        &-table {
+            font-family: "General Sans Medium";
+        }
+
+        p {
+            &.summeryGraph-text {
+                color: #000;
+            }
+        }
+        &_wrap{
+            display: flex;align-items: center;justify-content: center; position: relative;
+        }
+        &_card{
+            padding:20px;background-color: rgba(#E97D35, 0.1); width: 312px; border-radius: 10px;
+            position: absolute;right:30px;bottom:90px;
+            label{font-size: 20px;color:#525866;font-family: "General Sans"; }
+            p{font-size: 26px;font-family: "General Sans Medium";margin-top: 5px; line-height: 1.2  ;}
+        }
+    }    
     @media (max-width: 1399px){
         .container{
             max-width: 100%; padding: 0 15px;
@@ -130,7 +256,7 @@
         .section{
             padding: 40px 0;
             &-title{
-                font-size: 28px;
+                font-size: 24px;
                 margin-bottom: 15px;
             }
         }
@@ -139,113 +265,120 @@
                 font-size: 32px;
             }
         }
-    }
-        .summeryGraph {
-            .row {
-                display: flex;
-                flex-wrap: wrap;
-                margin-left: -12px;
-                margin-right: -12px;
-            }
-    
-            .col-left {
-                max-width: 60%;
-                flex: 0 0 60%;
-                padding-left: 12px;padding-right: 12px;
-            }
-    
-            .col-right {
-                max-width: 40%;
-                flex: 0 0 40%;
-                padding-left: 12px;padding-right: 12px;
-            }
-    
-            &_left {
-                padding: 20px;
-                border-radius: 8px;
-                border: 1px solid #E1E1E1;
-                position: relative;
-                height: 100%;
-            }
-    
-            &_right {
-                border-radius: 8px;
-                border: 1px solid #E1E1E1;
-                height: 100%;
-    
-                &_inner {
-                    max-height: 453px;
-                    overflow-y: auto;
-    
-                    &::-webkit-scrollbar {
-                        width: 6px;
-                        background-color: #F5F5F5;
-    
-                        &-thumb {
-                            background-color: #AEAEAE;
-                        }
-                    }
-                }
-            }
-    
-            &-item {
-                padding: 25px 20px;
-                display: flex;
-                gap: 0 20px;
-    
-                &:not(:last-child) {
-                    border-bottom: 1px solid #E1E1E1;
-                }
-    
-                p {
-                    color: #525866;
-                    font-size: 18px;
-    
-                    &:not(:last-child) {
-                        margin-bottom: 10px;
-                    }
-                }
-    
-                .status {
-                    border-radius: 15px;
-                    font-size: 16px;
-    
-                    &-danger {
-                        background-color: #E93544;
-                        color: #fff;
-                    }
-                }
-            }
-    
-            &-user {
-                margin-top: 10px;
-            }
-    
-            &-table {
-                span {
-                    color: #0694FF;
-                }
-            }
-    
-            &-text,
-            &-severity,
-            &-table {
-                font-family: "General Sans Medium";
-            }
-    
-            p {
-                &.summeryGraph-text {
-                    color: #000;
-                }
-            }
-            &_wrap{
-                display: flex;align-items: center;justify-content: center; position: relative;
-            }
+        .summeryGraph{
             &_card{
-                padding:20px;background-color: rgba(#E97D35, 0.1); width: 295px; border-radius: 10px;
-                position: absolute;right:30px;bottom:90px;
-                label{font-size: 20px;color:#525866;font-weight: 500; }
-                p{font-size: 26px;font-weight: 600;margin-top: 10px;}
+                width: 264px;
+                label{
+                    font-size: 18px;
+                }
+                p{
+                    font-size: 24px;
+                }
+            }
+            &-item{
+                gap: 0 14px;
+                p{
+                    font-size: 16px;
+                }
+                .status{
+                    font-size: 14px;
+                }
             }
         }
+        .summary, .security{
+            &-item{
+                padding: 18px;
+            }
+            &-label{
+                font-size: 18px;
+            }
+            &-value{
+                font-size: 24px;
+            }
+        }
+        .summary{
+            &-item{
+                &::before{
+                    background-size: contain;
+                    width: 55px;
+                    height: 50px;
+                }
+            }
+            &-icon{
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+    @media (max-width: 1199px){
+        padding-top: 30px;
+        .page{
+            &-title{
+                font-size: 28px;
+            }
+        }
+        .section{
+            &-title{
+                font-size: 22px;
+            }
+        }
+        .summeryGraph{
+            &-item{
+                padding: 20px 15px;
+            }
+        }
+        .summary, .security{
+            &-item{
+                padding: 14px;
+            }
+            &-label{
+                font-size: 16px;
+            }
+            &-value{
+                font-size: 22px;
+            }
+        }
+        .summary{
+            &-icon{
+                width: 42px;
+                height: 42px;
+                margin-right: 10px;
+            }
+        }
+        .security{
+            &-item{
+                img{
+                    height: 52px;
+                }
+            }
+        }
+        
+    }
+    @media (max-width: 991px){
+        .section{
+            padding: 30px 0;
+                &-title{
+                    font-size: 22px;
+                }
+            }
+        .summary{
+            &-grid{
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .summeryGraph{
+            .col{
+                &-left, &-right{
+                    max-width: 100%;
+                    flex: 100%;
+                }
+                &-left{
+                    margin-bottom: 20px;
+                }
+            }
+            &_card{
+                bottom: 30px;
+            }
+        }
+    }
 }

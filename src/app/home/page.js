@@ -55,11 +55,19 @@ export default function Home() {
                 type: 'gradient',
             },
             legend: {
-                fontSize: '20px',
-                offsetY: 20,
-                offsetX: -40,
+                fontSize: '19px',
+                fontWeight: '500',
+                offsetY: 5,
+                offsetX: -25,
                 formatter: function(val, opts) {
                     return `${val}: ${opts.w.config.series[opts.seriesIndex]}`;
+                },
+                itemMargin: {
+                    horizontal: 20, // Space between legend items horizontally
+                    vertical: 13, // Space between legend items vertically
+                  },
+                  markers: {
+                    offsetX: -2, // Move marker further left to create more space
                 }
             },
             labels: ["Total Tables", "Tables with RLS", "Tables without RLS"]
@@ -196,7 +204,7 @@ export default function Home() {
                                 {recommendations.map((rec, index) => (
                                     <div key={index} className='summeryGraph-item'>
                                         <div className="summeryGraph-user">
-                                            <img src="user-1.png" alt="" />
+                                            <img src="placeholder-img.png" alt="user" />
                                         </div>
                                         <div>
                                         <p className='summeryGraph-table'>Table: <span>{rec.table}</span> </p>
@@ -217,6 +225,7 @@ export default function Home() {
             <div className='section users-tables'>
                 <div className="container">
                     <h2 className='section-title'>Users and Tables</h2>
+                    <div className='users-tables-responsive'>
                     <table className="user-table">
                         <thead>
                             <tr className='table-header'>
@@ -256,6 +265,7 @@ export default function Home() {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
 
