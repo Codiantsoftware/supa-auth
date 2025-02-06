@@ -7,8 +7,15 @@
   background-color: $blue;
   color: #fff;
   border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   &:hover{
       background-color: lighten($blue, 1.9);
       color: #fff;
+  }
+
+  @media (max-width: 991px){
+    height: 40px;font-size: 16px;padding:5px 15px;
   }
 }
