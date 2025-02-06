@@ -1,0 +1,31 @@
+.quickModal{
+    font-family: "General Sans";
+    .modal{
+        &-title{
+            font-size: 26px;
+            font-family: "General Sans Medium";
+            font-weight: 600;
+            color: #0694FF;
+        }
+        &-header{
+            border: 0;
+            margin-bottom: 40px;
+        }
+        &-dialog{
+            max-width: 960px;
+        }
+        &-content{
+            padding: 10px 200px;
+        }
+    }
+    &_title{
+        font-size: 18px;
+        color: #000;
+        font-family: "General Sans medium";
+        font-weight: 600;
+    }
+    &_txt{
+        font-size: 16px;
+        color: #000;
+    }
+}
