@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ReactApexChart from "react-apexcharts";
 import Modal from "react-bootstrap/Modal";
+import { Collapse, Form, InputGroup } from "react-bootstrap";
 
 /**
  * Home component that displays user data stored in session storage.
@@ -88,10 +89,12 @@ export default function Home() {
     setIsFormVisible((prev) => !prev);
   };
 
+    //  collapse
+    const [open, setOpen] = useState(false);
+
   return (
     <>
       <div className="dashboardPage">
-
         {/* Summary Section */}
         {summaryData && (
           <motion.div
@@ -378,12 +381,37 @@ export default function Home() {
             </div>
             <div className="quickModal_cnt_inner">
               <h2 className="quickModal_title">
-                For checking whether RLS is enabled or not :
+                For checking whether RLS is enabled or not :{"   "}{"   "}
+                <button
+                  className="btn btn-sm btn_danger"
+                  onClick={() => setOpen(!open)}
+                  aria-controls="collapseText"
+                  aria-expanded={open}
+                >
+                  Fix Now
+                </button>
               </h2>
+              <Collapse in={open}  >
+              <div id="collapseText">
+              <div className="collapseInner">
+                <Form>
+                  <InputGroup>
+                    <Form.Control
+                      placeholder="Enter"
+                      aria-describedby="basic-addon2"
+                    />
+                    <button className="btn btn-md">Submit</button>
+                  </InputGroup>
+                </Form>
+                </div>
+                </div>
+              </Collapse>
               <ul className="mb-4 ps-4">
                 <li>Log in to your Supabase dashboard.</li>
                 <li>Select your project from the dashboard</li>
-                <li>Click on <b>SQL Editor</b> from the left sidebar.</li>
+                <li>
+                  Click on <b>SQL Editor</b> from the left sidebar.
+                </li>
                 <li>Create a function named :get_tables_rls_status </li>
                 <li>Paste the below code :</li>
               </ul>
@@ -433,21 +461,25 @@ export default function Home() {
               />
             </div>
             <div className="quickModal_cnt_inner">
-              <h2 className="quickModal_title">
-              For checking whether  PITR 
-              </h2>
+              <h2 className="quickModal_title">For checking whether PITR</h2>
               <ul className="mb-0 ps-4">
                 <li>Go to Supabase and log in to your account.</li>
                 <li>Navigate to the Organization Settings</li>
                 <li>Click on your organization name in the top-left corner.</li>
                 <li>Select "Settings" from the dropdown.</li>
                 <li>Find the Access Token</li>
-                <li>Under the "Access Tokens" section, you might see existing tokens or an option to create a new one.</li>
+                <li>
+                  Under the "Access Tokens" section, you might see existing
+                  tokens or an option to create a new one.
+                </li>
                 <li>Click "Generate a new access token" if none exist.</li>
                 <li>Copy the Token</li>
-                <li>After generating, copy the token immediately as it may not be displayed again.</li>
+                <li>
+                  After generating, copy the token immediately as it may not be
+                  displayed again.
+                </li>
               </ul>
-              </div>
+            </div>
           </div>
         </Modal.Body>
       </Modal>
