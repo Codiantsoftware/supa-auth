@@ -2,18 +2,18 @@
 .btn{
   height: 44px;
   font-size: 18px;
-  font-family: "General Sans medium";
+  font-family: font(md);
   padding: 7px 20px;
-  background-color: $blue;
-  border-color: $blue;
-  color: #fff;
+  background-color: color(500);
+  border-color: color(500);
+  color: color(50);
   border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   &:hover, &:active{
-      background-color: lighten($blue, 1.9)!important;
-      color: #fff!important;
+      background-color: lighten(color(500), 1.9)!important;
+      color: color(50)!important;
   }
   &.btn-md{
     font-size: 15px;
