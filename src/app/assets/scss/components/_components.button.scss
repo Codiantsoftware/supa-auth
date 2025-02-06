@@ -5,17 +5,34 @@
   font-family: "General Sans medium";
   padding: 7px 20px;
   background-color: $blue;
+  border-color: $blue;
   color: #fff;
   border-radius: 8px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  &:hover{
-      background-color: lighten($blue, 1.9);
-      color: #fff;
+  &:hover, &:active{
+      background-color: lighten($blue, 1.9)!important;
+      color: #fff!important;
   }
-
+  &.btn-md{
+    font-size: 15px;
+    height: 38px;
+  }
+  &.btn-sm{
+    font-size: 13px;
+    height: 32px;
+    padding: 2px 16px;
+  }
+  &_danger{
+    background: #dc3545;
+    border-color: #dc3545;
+    &:hover, &:active{
+      background-color: lighten(#dc3545, 1.9)!important;
+    }
+  }
   @media (max-width: 991px){
     height: 40px;font-size: 16px;padding:5px 15px;
   }
 }
+
