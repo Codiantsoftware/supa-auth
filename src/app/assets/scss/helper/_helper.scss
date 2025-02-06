@@ -1,0 +1,23 @@
+/* html */
+html {
+  height: 100%;
+}
+body {
+  font-family: font(rg);
+  color: color(900);
+  min-height: 100%;
+  position: relative;
+}
+
+/* anchor tag */
+a, .btn {
+  text-decoration: none;  transition: all 0.5s;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* common focus */
+:focus {
+  outline: 0 !important;
+}

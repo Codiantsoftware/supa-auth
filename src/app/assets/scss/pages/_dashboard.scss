@@ -1,11 +1,10 @@
 .dashboardPage{
     padding-top: 40px;
-    font-family: 'General Sans';
     .page-title{
         font-size: 40px;font-weight: 600;
-        color: #000;
-        span{color:$blue;}
-        font-family: 'General Sans Medium';
+        color: color(900);
+        span{color:color(500);}
+        font-family: font(md);
         margin-bottom: 0;
     }
     .status{
@@ -28,7 +27,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        &-title{font-size: 26px;font-family: 'General Sans Medium'; margin-bottom: 20px; span{color:$blue;}}
+        &-title{font-size: 26px;font-family: font(md); margin-bottom: 20px; span{color:color(500);}}
     }
     .container{
         max-width: 1340px; margin:0 auto;
@@ -45,29 +44,25 @@
             &.purple{
                 background: #693ee014;
                 &::before{                
-                    background-image: url('../../images/table-bg-2.png');
+                    background-image: url(#{$imageurl}/table-bg-2.png);
                 }
             }
             &.red{
                 background: #e9354414;
                 &::before{                
-                    background-image: url('../../images/table-bg-3.png');
+                    background-image: url(#{$imageurl}/table-bg-3.png);
                 }
             }
             &.orange{
                 background: #e97d3514;
                 &::before{                
-                    background-image: url('../../images/table-bg-4.png');
+                    background-image: url(#{$imageurl}/table-bg-4.png);
                 }
             }
         }
-        // &-item{
-        //     padding:20px; border: 1px solid rgb(214, 243, 255);
-        //     background: linear-gradient(rgb(234, 243, 255) 0%, rgba(234, 243, 255, 0) 100%);
-        // }
-        &-label{font-size: 20px;margin-bottom: 4px; color: #525866;
-            font-family: 'General Sans';}
-        &-value{font-size: 26px;font-family: 'General Sans Medium';}
+
+        &-label{font-size: 20px;margin-bottom: 4px; color: #525866;}
+        &-value{font-size: 26px;font-family: font(md);}
     }
     .summary{
         &-icon{
@@ -113,7 +108,7 @@
    
     .recommendations{
         background-color: #0e121b;width: 100%; max-width: inherit;
-        .section-title{color:#fff; text-align: center;}
+        .section-title{color:color(50); text-align: center;}
     }
     .recommendation{
         &-wrap{display: flex;gap: 20px; flex-wrap: wrap;}
@@ -124,8 +119,8 @@
             
         }
        &-severity, &-table{color:#cacfd8;font-size: 16px;}
-       &-table{span{color:$blue; font-family: 'General Sans Medium';}}
-       &-text{font-family: 'General Sans Medium'; color:#fff;}     
+       &-table{span{color:color(500); font-family: font(md);}}
+       &-text{font-family: font(md); color:color(50);}     
        &-details{color:#8d99ad;}  
     }
     .users-tables-responsive{
@@ -221,7 +216,7 @@
 
                 &-danger {
                     background-color: #E93544;
-                    color: #fff;
+                    color: color(50);
                 }
             }
         }
