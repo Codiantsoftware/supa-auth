@@ -21,3 +21,22 @@ a, .btn {
 :focus {
   outline: 0 !important;
 }
+
+// common scrollbar
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #F5F5F5;
+
+  &-track {
+    background: #edf1ed;
+  }
+
+  &-thumb {
+    background: color(500);
+
+    &:hover {
+      background: color(500);
+    }
+  }
+}
