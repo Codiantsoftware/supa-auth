@@ -1,6 +1,5 @@
 .dashboardPage{
     // padding-top: 40px;
-    $blue:#007cf5;
     font-family: 'General Sans';
     .page-title{
         font-size: 40px;font-weight: 500;
@@ -28,19 +27,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            .btn{
-                height: 44px;
-                font-size: 18px;
-                font-family: "General Sans medium";
-                padding: 7px 20px;
-                margin-bottom: 20px;
-                background-color: $blue;
-                color: #fff;
-                border-radius: 8px;
-                &:hover{
-                    background-color: lighten($blue, 1.9);
-                }
-            }
         }
         &-title{font-size: 26px;font-family: 'General Sans Medium'; margin-bottom: 20px; span{color:$blue;}}
     }
@@ -93,6 +79,11 @@
         }
         &-section{
             padding-bottom: 0!important;
+            .section{
+                &-title{
+                    margin: 0;
+                }
+            }
         }
         &-item{
             &::before{
@@ -185,6 +176,12 @@
             border: 1px solid #E1E1E1;
             position: relative;
             height: 100%;
+            h2{
+                font-family: "General Sans Medium";
+                font-weight: 600;
+                font-size: 26px;
+                color: #000;
+            }
         }
 
         &_right {
@@ -197,9 +194,7 @@
                 overflow-y: auto;
 
                 &::-webkit-scrollbar {
-                    width: 6px;
                     background-color: #F5F5F5;
-
                     &-thumb {
                         background-color: #AEAEAE;
                     }
@@ -264,7 +259,7 @@
             padding:20px;background-color: rgba(#E97D35, 0.1); width: 312px; border-radius: 10px;
             position: absolute;right:30px;bottom:90px;
             label{font-size: 20px;color:#525866;font-family: "General Sans"; }
-            p{font-size: 26px;font-family: "General Sans Medium";margin-top: 5px; line-height: 1.2  ;}
+            p{font-size: 26px;font-family: "General Sans Medium";margin: 5px 0 0; line-height: 1.2  ;}
         }
     }    
     @media (max-width: 1399px){
