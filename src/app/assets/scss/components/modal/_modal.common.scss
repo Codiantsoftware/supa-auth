@@ -1,5 +1,8 @@
 .quickModal{
     font-family: "General Sans";
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    background-color: #00000041;
     .modal{
         &-title{
             font-size: 26px;
@@ -177,6 +180,9 @@
         }
         &_code{
             padding: 12px;
+        }
+        .form-control{
+            font-size: 15px;
         }
 
     }
