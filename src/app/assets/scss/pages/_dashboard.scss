@@ -228,9 +228,6 @@
             }
         }
 
-        &-user {
-            margin-top: 10px;
-        }
 
         &-table {
             span {
@@ -371,7 +368,7 @@
         .section{
             padding: 30px 0;
                 &-title{
-                    font-size: 22px;
+                    font-size: 20px;
                 }
             }
         .summary{
@@ -404,9 +401,19 @@
     }
 
     @media (max-width: 767px){
+        .page-title{font-size: 22px;}
         .summeryGraph{
             &_card{
                 position: initial;margin: 10px auto 0;
+            }
+        }
+        .section{
+            padding: 20px 0;
+            &-title{font-size: 18px;}
+        }
+        .summary, .security{
+            &-value{
+                font-size: 18px;
             }
         }
     }
@@ -414,10 +421,6 @@
         .summary-grid, .security-grid{
             grid-template-columns: repeat(1, 1fr);
         }        
-        .section{
-            padding: 20px 0;
-            &-title{font-size: 20px;}
-        }
         .summeryGraph{
             &-item{
                 flex-direction: column;
