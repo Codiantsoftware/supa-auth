@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import { motion } from "framer-motion";
 
 /**
  * Login component for authenticating users with Supabase URL and Service Role Key.
@@ -26,7 +27,6 @@ export default function Login() {
             });
             if (res.status == 400) {
                 const errorData = await res.json();
-                console.log(errorData, "errorData");
                 toast.error(errorData.message);
                 return;
             }
@@ -35,34 +35,53 @@ export default function Login() {
             sessionStorage.setItem('authData', JSON.stringify(data));
             router.push('/home');
         } catch (error) {
-            console.error("Fetch error:", error);
         }
     };
 
 
     return (
         <div className='authPage'>
-            <form onSubmit={handleSubmit}>
-                <div className='formGroup'>
-                    <label>Supabase URL</label>
-                    <input
-                        type="text"
-                        placeholder="Supabase URL"
-                        onChange={(e) => setCredentials({ ...credentials, url: e.target.value })}
-                    />
-                </div>
-                <div className='formGroup'>
-                    <label>Service Role Key</label>
-                    <input
-                        type="text"
-                        placeholder="Service Role Key"
-                        onChange={(e) => setCredentials({ ...credentials, key: e.target.value })}
-                    />
-                </div>
+            <div className="container">
+                <div className="authPage_inner">
+                    <div className="authPage_form">
+                        <h1 className="authPage_title">Welcome to Our App</h1>
+                        <p className="authPage_para">
+                            Getting started is easy. Just click below to log in!
+                        </p>
+                        <form onSubmit={handleSubmit}>
+                            <div className='formGroup'>
+                                <label>Supabase URL</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Supabase URL"
+                                    onChange={(e) => setCredentials({ ...credentials, url: e.target.value })}
+                                />
+                            </div>
+                            <div className='formGroup'>
+                                <label>Service Role Key</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Service Role Key"
+                                    onChange={(e) => setCredentials({ ...credentials, key: e.target.value })}
+                                />
+                            </div>
 
 
-                <button className='btn' type="submit">Authenticate</button>
-            </form>
-        </div >
+                            <button className='btn authPage_btn' type="submit">Authenticate</button>
+                        </form>
+                    </div>
+                    <div className="authPage_img">
+                        <motion.img
+                            src="mainpagelogo.webp"
+                            alt="logo"
+                            initial={{ y: 20, opacity: 0, scale: 0.5 }}
+                            animate={{ y: 0, opacity: 1, scale: 1 }}
+                            transition={{ ease: "easeInOut", duration: 1.3, delay: 0.1 }}
+                        />
+
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }

@@ -1,0 +1,193 @@
+.quickModal {
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  background-color: #00000041;
+  .modal {
+    &-title {
+      font-size: 26px;
+      font-family: font(md);
+      font-weight: 600;
+      color: #0694ff;
+    }
+    &-header {
+      border: 0;
+      margin-bottom: 40px;
+      padding: 30px 200px;
+    }
+    &-dialog {
+      max-width: 960px;
+    }
+    &-body {
+      padding: 0 22px 0 0;
+    }
+  }
+  .btn-close {
+    position: absolute;
+    right: 22px;
+    top: 30px;
+    box-shadow: none;
+  }
+  &_title {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: color(900);
+    font-family: font(md);
+    font-weight: 600;
+  }
+  &_txt {
+    font-size: 16px;
+    color: color(900);
+    margin-bottom: 0;
+  }
+  &_cnt {
+    max-height: calc(100vh - 225px);
+    overflow-y: auto;
+    margin-bottom: 25px;
+    font-size: 18px;
+    &_inner {
+      padding: 0 200px 46px 200px;
+    }
+    li {
+      color: #525866;
+      font-family: font(md);
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+    .collapseInner {
+      padding: 15px;
+      margin-bottom: 20px;
+      position: relative;
+      background: #f4f4f4;
+      max-width: 600px;
+      border-radius: 8px;
+      .form-control {
+        background: color(50);
+        &:focus {
+          box-shadow: none;
+          outline: 0;
+        }
+      }
+    }
+  }
+  &_code {
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    padding: 40px;
+    code {
+      color: #a8a8a8;
+    }
+  }
+  @media (max-width: 1399px) {
+    .modal {
+      &-header {
+        margin-bottom: 0;
+        padding: 25px 150px;
+      }
+    }
+    &_cnt {
+      font-size: 16px;
+      &_inner {
+        padding: 0 150px 30px 150px;
+      }
+    }
+    &_code {
+      padding: 30px;
+    }
+    .btn-close {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 1199px) {
+    .modal {
+      &-dialog {
+        max-width: 740px;
+      }
+      &-header {
+        padding: 20px 50px;
+      }
+      &-title {
+        font-size: 24px;
+      }
+    }
+    &_cnt {
+      &_inner {
+        padding: 0 50px 35px;
+      }
+    }
+  }
+  @media (max-width: 991px) {
+    .modal {
+      &-dialog {
+        max-width: 100%;
+        margin: auto 15px;
+      }
+      &-header {
+        padding: 20px;
+      }
+      &-title {
+        font-size: 22px;
+      }
+      &-body {
+        padding-right: 12px;
+      }
+    }
+    &_cnt {
+      &_inner {
+        padding-left: 15px;
+        padding-right: 15px;
+        &:last-child {
+          padding-bottom: 10px;
+        }
+      }
+    }
+    .btn-close {
+      right: 12px;
+      top: 26px;
+    }
+  }
+  @media (max-width: 577px) {
+    .collapseInner {
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .modal {
+      &-header {
+        padding: 18px 15px;
+      }
+      &-title {
+        font-size: 20px;
+      }
+      &-body {
+        padding-right: 8px;
+      }
+    }
+    .btn-close {
+      font-size: 12px;
+    }
+    &_title {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    &_txt {
+      font-size: 14px;
+    }
+    &_cnt {
+      font-size: 14px;
+      &_inner {
+        padding-bottom: 25px;
+      }
+      li {
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+      }
+    }
+    &_code {
+      padding: 12px;
+    }
+    .form-control {
+      font-size: 15px;
+    }
+  }
+}

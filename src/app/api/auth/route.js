@@ -1,124 +1,84 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-/**
- * Handles authentication with Supabase and retrieves user and table information.
- * 
- * @param {Request} req - The incoming HTTP request.
- * @returns {Promise<Response>} A JSON response containing authentication status, user details, and table information.
- */
 export async function POST(req) {
     try {
-        // Parse request body
         const { url, key } = await req.json();
 
-        // Validate input
         if (!url || !key) {
-            return new Response(
-                JSON.stringify({ success: false, message: 'Missing Supabase URL or key' }),
-                { status: 400 }
-            );
+            return NextResponse.json({ success: false, message: 'Missing credentials' }, { status: 400 });
         }
 
-        // Initialize Supabase client
         const supabase = createClient(url, key);
+        const { data: rlsData, error: rlsError } = await supabase.rpc('get_tables_rls_status');
 
-        // First verify credentials with auth check
-        const { data: authCheck, error: authError } = await supabase.auth.admin.listUsers();
-        if (authError) {
-            return new Response(
-                JSON.stringify({ success: false, message: "Invalid Supabase credentials" }),
-                { status: 400 }
-            );
+        if (rlsError) {
+            console.error(rlsError);
+            return NextResponse.json({ success: false, message: 'Failed to fetch RLS status' }, { status: 500 });
         }
 
-        // Get schema information using REST API
-        const metadataUrl = `${url}/rest/v1/?apikey=${key}`;
-        const response = await fetch(metadataUrl, {
-            headers: {
-                'Authorization': `Bearer ${key}`,
-                'apikey': key
-            }
+        const { data: users, error: userError } = await supabase.auth.admin.listUsers();
+        if (userError) {
+            console.error('Error:', userError);
+            return NextResponse.json({ success: false, message: 'Failed to fetch users' }, { status: 500 });
+        }
+        const results = users?.users.map((user) => ({
+            userId: user.id,
+            email: user.email,
+            mfaEnabled: user?.user_metadata?.mfa_enabled || false,
+            status: user?.user_metadata?.mfa_enabled ? 'PASS' : 'FAIL',
+        }));
+        const SUPABASE_ACCESS_TOKEN = process.env.SUPABASE_ACCESS_TOKEN;
+        const response = await fetch('https://api.supabase.io/v1/projects', {
+            headers: { Authorization: `Bearer ${SUPABASE_ACCESS_TOKEN}` },
         });
 
         if (!response.ok) {
-            return new Response(
-                JSON.stringify({ success: false, message: "Failed to fetch schema information" }),
-                { status: 400 }
-            );
+            return NextResponse.json({ success: false, message: `Failed to fetch projects. Status: ${response.status}` }, { status: 500 });
         }
 
-        const definitions = await response.json();
-
-        // Process the table definitions
-        const tables = Object.entries(definitions.definitions)?.map(([tableName, def]) => {
-            return {
-                table: tableName,
-                // If table has security policies defined in the schema
-                hasRLS: def['policy'] !== undefined,
-                schema: 'public'
-            };
-        });
-
-        // Get user information
-        const { data: users } = await supabase.auth.admin.listUsers();
-        const userData = users?.users?.map(user => ({
-            id: user.id,
-            email: user.email,
-            hasMFA: user.factors?.length > 0
+        const projects = await response.json();
+        const projectData = projects?.map((proj) => ({
+            projectId: proj.id,
+            projectName: proj.name,
+            pitrEnabled: proj?.pitr_enabled,
+            status: proj.pitr_enabled ? 'PASS' : 'FAIL',
         }));
 
-        // Create summary
-        const summary = {
-            totalTables: tables.length,
-            tablesWithRLS: tables.filter(t => t.hasRLS).length,
-            tablesWithoutRLS: tables.filter(t => !t.hasRLS).length,
-            tables: tables.map(t => ({
-                ...t,
-                rls_status: t.hasRLS ? "Enabled" : "Disabled"
-            }))
-        };
-
-        // Generate recommendations
-        const recommendations = tables
-            .filter(t => !t.hasRLS)
-            .map(t => ({
-                table: t.table,
-                recommendation: `Enable Row Level Security (RLS) for table '${t.table}' to ensure proper access control.`,
-                severity: "High",
-                details: "RLS helps prevent unauthorized access to table rows based on the user making the request."
-            }));
-
-        // Additional security checks
-        const securityChecks = {
-            auth_enabled: true, // Supabase has auth enabled by default
-            total_users: userData.length,
-            users_with_mfa: userData.filter(u => u.hasMFA).length,
-            rls_adoption_rate: `${((summary.tablesWithRLS / summary.totalTables) * 100).toFixed(1)}%`
-        };
+        const recommendations = rlsData?.map((t) => ({
+            table: t.name,
+            recommendation: t.has_rls
+                ? `Great job! RLS is enabled for table '${t.name}', ensuring proper access control.`
+                : `Enable Row Level Security (RLS) for table '${t.name}' to ensure proper access control.`,
+            severity: t.has_rls ? "Low" : "High",
+            details: t.has_rls
+                ? "RLS is correctly implemented to prevent unauthorized access."
+                : "RLS helps prevent unauthorized access to table rows based on the user making the request.",
+        }));
 
         return NextResponse.json({
             success: true,
             message: "Security audit completed successfully",
-            summary,
             recommendations,
-            userStats: {
-                totalUsers: userData.length,
-                users: userData
-            },
-            securityChecks
+            totalUsers: users?.users?.length || 0,
+            totalTables: rlsData?.length || 0,
+            tablesWithRls: rlsData?.filter((t) => t.has_rls)?.length || 0,
+            usersWithMfa: results?.filter((u) => u.mfaEnabled)?.length || 0,
+            rlsAcceptanceRatio: rlsData?.length
+                ? (rlsData.filter((t) => t.has_rls).length / rlsData.length) * 100
+                : 1,
+            rlsData,
+            results,
+            projectData,
+            securityChecks: true
         }, { status: 200 });
 
     } catch (error) {
-        console.error('Error in RLS check:', error);
+        console.error('Error:', error);
         return NextResponse.json({
             success: false,
-            message: error.message || "An unexpected error occurred",
-            error: {
-                type: error.name,
-                details: error.message,
-                stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-            }
+            message: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
         }, { status: 500 });
     }
 }

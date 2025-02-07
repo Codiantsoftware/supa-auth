@@ -1,0 +1,38 @@
+
+.btn{
+  height: 44px;
+  font-size: 18px;
+  font-family: font(md);
+  padding: 7px 20px;
+  background-color: color(500);
+  border-color: color(500);
+  color: color(50);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &:hover, &:active{
+      background-color: lighten(color(500), 1.9)!important;
+      color: color(50)!important;
+  }
+  &.btn-md{
+    font-size: 15px;
+    height: 38px;
+  }
+  &.btn-sm{
+    font-size: 13px;
+    height: 32px;
+    padding: 2px 16px;
+  }
+  &_danger{
+    background: #dc3545;
+    border-color: #dc3545;
+    &:hover, &:active{
+      background-color: lighten(#dc3545, 1.9)!important;
+    }
+  }
+  @media (max-width: 991px){
+    height: 40px;font-size: 16px;padding:5px 15px;
+  }
+}
+

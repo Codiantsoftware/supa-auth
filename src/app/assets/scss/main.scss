@@ -1,0 +1,13 @@
+// settings
+@import "settings/settings.main";
+
+// Components
+@import "helper/helper";
+
+// Components
+@import "components/components.main";
+
+// pages
+@import "pages/dashboard";
+@import "pages/auth";
+@import "pages/chatbot";

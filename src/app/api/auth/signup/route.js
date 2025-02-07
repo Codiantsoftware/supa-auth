@@ -1,15 +1,6 @@
 import { signupLogger } from '../../../../lib/logger';
 import { supabase } from '../../../../lib/supabaseClient';
 
-
-/**
- * Handles user sign-up via Supabase.
- *
- * @async
- * @function POST
- * @param {Request} req - The incoming request object containing the user's email.
- * @returns {Promise<Response>} A response indicating the success or failure of the sign-up process.
- */
 export async function POST(req) {
     const { email, password, name, phoneNumber } = await req.json();
 
@@ -18,6 +9,9 @@ export async function POST(req) {
             data: {
                 first_name: name,
                 phoneNumber,
+                last_name: name,
+                factor_enabled: true,
+                mfa_enabled: true,
             },
         },
     });
