@@ -151,7 +151,7 @@ export default function Home() {
           <motion.div
             initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
             animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
-            transition={{ ease: "easeInOut", duration: 1, delay: 0.1 }}
+            transition={{ ease: "easeInOut", duration: 1,  }}
             className="section summary-section"
           >
             <div className="container">
@@ -215,7 +215,7 @@ export default function Home() {
                 <motion.div
                   initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
                   animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
-                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.4 } : {} }
                   className="summary-item orange"
                 >
                   <img
@@ -240,7 +240,7 @@ export default function Home() {
           <motion.div
             initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
             animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
-            transition={{ ease: "easeInOut", duration: 1.1, delay: 0.3 }}
+            transition={{ ease: "easeInOut", duration: 1.1, delay: 0.2 }}
             className="section security-checks"
           >
             <div className="container">
@@ -249,7 +249,7 @@ export default function Home() {
                 <motion.div
                   initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
                   animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
-                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.3 } : {} }
                   className="security-item"
                 >
                   <div>
@@ -263,7 +263,7 @@ export default function Home() {
                 <motion.div
                   initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
                   animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
-                  transition={ !isMobile ? { ease: "easeInOut", duration: 1, delay: 0.5 } : {} }
+                  transition={ !isMobile ? { ease: "easeInOut", duration: 1, delay: 0.4 } : {} }
                   className="security-item purple"
                 >
                   <div>
@@ -277,7 +277,7 @@ export default function Home() {
                 <motion.div
                   initial={!isMobile ? { y: 20, opacity: 0 } : {} }
                   animate={!isMobile ? { y: 0, opacity: 1 } : {} }
-                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.8 } : {} }
                   className="security-item red"
                 >
                   <div>
