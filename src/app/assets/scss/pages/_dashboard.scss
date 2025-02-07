@@ -9,9 +9,9 @@
     }
     .status{
         padding: 3px 15px;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 1.5;
-        font-weight: 400;
+        font-weight: 600;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -219,6 +219,10 @@
 
                 &-danger {
                     background-color: #E93544;
+                    color: color(50);
+                }
+                &-success {
+                    background-color: #27c312;
                     color: color(50);
                 }
             }
