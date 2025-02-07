@@ -53,7 +53,53 @@ export default function Home() {
                     offsetX: -2, // Move marker further left to create more space
                 }
             },
-            labels: ["Tables with RLS", "Tables without RLS"]
+            labels: ["Tables with RLS", "Tables without RLS"],
+            responsive: [
+                {
+                    breakpoint: 991, // Adjust this value as per your requirement
+                    options: {
+                        chart: {
+                            width: 550, // Adjust chart size for small screens
+                        },
+                        legend: {
+                            fontSize: "16px",
+                        },
+                    },
+                },
+                {
+                    breakpoint: 767, // Another smaller breakpoint for mobile screens
+                    options: {
+                        chart: {
+                            width: 500, // Further reduce size
+                        },
+                        legend: {
+                            fontSize: "14px",
+                            position: "bottom",
+                            itemMargin: {
+                                horizontal: 5,
+                                vertical: 0,
+                            },
+                        },
+                    },
+                },
+                {
+                    breakpoint: 576, // Another smaller breakpoint for mobile screens
+                    options: {
+                        chart: {
+                            width: 300, // Further reduce size
+                        },
+                        legend: {
+                            itemMargin: {
+                                horizontal: 5,
+                                vertical: 5,
+                            },
+                            markers: {
+                                size: 6,
+                            },
+                        }
+                    },
+                },
+            ],
         }
     };
     const [userData, setUserData] = useState([]);
@@ -91,6 +137,9 @@ export default function Home() {
 
     //  collapse
     const [open, setOpen] = useState(false);
+
+    // animation mediquery
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
     /**
      * Effect hook to retrieve authentication data from session storage.
@@ -226,9 +275,11 @@ export default function Home() {
                 {/* Summary Section */}
                 {summaryData && (
                     <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ ease: "easeInOut", duration: 1, delay: 0.1 }} className='section summary-section'>
+                        initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                        animate={!isMobile ? { y: 0, opacity: 1 } : {}}
+                        transition={{ ease: "easeInOut", duration: 1, }}
+                        className="section summary-section"
+                    >
                         <div className="container">
                             <div className="section-head mb-4">
                                 <h2 className='section-title'> <span> Row Level </span> Security</h2>
@@ -239,8 +290,8 @@ export default function Home() {
 
                             <div className='grid summary-grid'>
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 0.1 }}
                                     className='summary-item'>
                                     <img src="table-img-1.png" className='summary-icon' alt="img" />
@@ -250,8 +301,8 @@ export default function Home() {
                                     </div>
                                 </motion.div>
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 0.2 }}
                                     className='summary-item purple'>
                                     <img src="table-img-2.png" className='summary-icon' alt="img" />
@@ -261,8 +312,8 @@ export default function Home() {
                                     </div>
                                 </motion.div>
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 0.3 }}
                                     className='summary-item red'>
                                     <img src="table-img-3.png" className='summary-icon' alt="img" />
@@ -272,8 +323,8 @@ export default function Home() {
                                     </div>
                                 </motion.div>
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
                                     className='summary-item orange'>
                                     <img src="table-img-4.png" className='summary-icon' alt="img" />
@@ -290,16 +341,18 @@ export default function Home() {
                 {/* Security Checks */}
                 {securityChecks && (
                     <motion.div
-                        initial={{ y: 20, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        transition={{ ease: "easeInOut", duration: 1.1, delay: 1 }} className='section security-checks'>
+                        initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                        animate={!isMobile ? { y: 0, opacity: 1 } : {}}
+                        transition={{ ease: "easeInOut", duration: 1.1, delay: 0.2 }}
+                        className="section security-checks"
+                    >
                         <div className="container">
                             <h2 className='section-title'><span>Multi Factor</span> Authentication</h2>
                             <div className='grid security-grid lg'>
 
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 1.3 }}
                                     className='security-item purple'>
                                     <div>
@@ -310,10 +363,10 @@ export default function Home() {
                                 </motion.div>
 
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 1.4 }}
-                                    className='security-item red'>
+                                    className='security-item '>
                                     <div>
                                         <p className='security-label'>Users with MFA</p>
                                         <p className='security-value mb-0'>{usersWithMfa}</p>
@@ -321,10 +374,10 @@ export default function Home() {
                                     <img src="enabled.png" alt="img" />
                                 </motion.div>
                                 <motion.div
-                                    initial={{ y: 20, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
                                     transition={{ ease: "easeInOut", duration: 1, delay: 1.1 }}
-                                    className='security-item'>
+                                    className='security-item red'>
                                     <div>
                                         <p className='security-label'>Users without MFA</p>
                                         <p className='security-value mb-0'>{totalUsers - usersWithMfa}</p>
@@ -341,7 +394,10 @@ export default function Home() {
                     <div className="container">
                         <div className="row">
                             <div className="col-left">
-                                <div className='summeryGraph_left'>
+                                <motion.div
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
+                                    transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.5 } : {}} className="summeryGraph_left">
                                     <h2 className="section-title">Summary</h2>
                                     <div className="summeryGraph_wrap" >
                                         {!isLoading &&
@@ -352,10 +408,13 @@ export default function Home() {
                                         <label>RLS Adoption Rate</label>
                                         <p>{rlsAcceptanceRatio}%</p>
                                     </div>}
-                                </div>
+                                </motion.div>
                             </div>
                             <div className="col-right">
-                                <div className="summeryGraph_right">
+                                <motion.div
+                                    initial={!isMobile ? { y: 20, opacity: 0 } : {}}
+                                    animate={!isMobile ? { y: 0, opacity: 1 } : {}}
+                                    transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {}} className="summeryGraph_right">
                                     <div className="summeryGraph_right_inner">
                                         {recommendations?.length > 0 ? (
                                             recommendations?.map((rec, index) => (
@@ -377,115 +436,132 @@ export default function Home() {
                                         )}
 
                                     </div>
-                                </div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* Users and Tables */}
-                <div className='section users-tables'>
-                    <div className="container">
+                <div className='section users-tables pb-0'>
+                    <motion.div
+                        initial={!isMobile ? { opacity: 0, y: 20 } : {}}
+                        whileInView={!isMobile ? { opacity: 1, y: 0 } : {}}
+                        transition={!isMobile ? { ease: "easeInOut", duration: 1 } : {}}
+                        viewport={{ once: true, amount: 0.2 }} // Ensures animation triggers only once
+                        className="container">
                         <h2 className='section-title'><span>Users </span>Information</h2>
-                        <table className="user-table">
-                            <thead>
-                                <tr className='table-header'>
-                                    <th className='table-cell'>ID</th>
-                                    <th className='table-cell'>Email</th>
-                                    <th className='table-cell'>Has MFA</th>
-                                    {/* <th className='table-cell'>Tables</th> */}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {userData?.length > 0 ? (
-                                    userData?.map((user, index) => (
-                                        <tr key={index}>
-                                            <td className='table-cell'>{index + 1}</td>
-                                            <td className='table-cell'>{user.email}</td>
-                                            <td className='table-cell'>
-                                                <span className={`status ${user.mfaEnabled ? 'status-success' : 'status-danger'}`}>
-                                                    {user.mfaEnabled ? 'Yes' : 'No'}
-                                                </span>
+                        <div className="users-tables-responsive">
+                            <table className="user-table">
+                                <thead>
+                                    <tr className='table-header'>
+                                        <th className='table-cell'>ID</th>
+                                        <th className='table-cell'>Email</th>
+                                        <th className='table-cell'>Has MFA</th>
+                                        {/* <th className='table-cell'>Tables</th> */}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {userData?.length > 0 ? (
+                                        userData?.map((user, index) => (
+                                            <tr key={index}>
+                                                <td className='table-cell'>{index + 1}</td>
+                                                <td className='table-cell'>{user.email}</td>
+                                                <td className='table-cell'>
+                                                    <span className={`status ${user.mfaEnabled ? 'status-success' : 'status-danger'}`}>
+                                                        {user.mfaEnabled ? 'Yes' : 'No'}
+                                                    </span>
+                                                </td>
+                                                {/* <td className='table-cell'>
+                                            {tableData.length > 0 ? (
+                                                <ul className='table-list'>
+                                                    {tableData.map((table, index) => (
+                                                        <li key={index} className='table-item'>
+                                                            {table.table}
+                                                            <span className={`status ${table.hasRLS ? 'status-success' : 'status-danger'}`}>
+                                                                {table.hasRLS ? 'RLS Enabled' : 'RLS Disabled'}
+                                                            </span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                'No Tables'
+                                            )}
+                                        </td> */}
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={3} className="table-cell text-center">
+                                                No Tables
                                             </td>
-                                            {/* <td className='table-cell'>
-                                        {tableData.length > 0 ? (
-                                            <ul className='table-list'>
-                                                {tableData.map((table, index) => (
-                                                    <li key={index} className='table-item'>
-                                                        {table.table}
-                                                        <span className={`status ${table.hasRLS ? 'status-success' : 'status-danger'}`}>
-                                                            {table.hasRLS ? 'RLS Enabled' : 'RLS Disabled'}
-                                                        </span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            'No Tables'
-                                        )}
-                                    </td> */}
                                         </tr>
-                                    ))
-                                ) : (
+                                    )}
 
-                                    <td colSpan={3} className="table-cell text-center">
-                                        No Tables
-                                    </td>
-                                )}
-
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </motion.div>
                 </div>
 
                 {/* Project Information */}
                 <div className='section users-tables'>
-                    <div className="container">
+                    <motion.div
+                        initial={!isMobile ? { opacity: 0, y: 20 } : {}}
+                        whileInView={!isMobile ? { opacity: 1, y: 0 } : {}}
+                        transition={!isMobile ? { ease: "easeInOut", duration: 1 } : {}}
+                        viewport={{ once: true, amount: 0.2 }} // Ensures animation triggers only once
+                        className="container">
                         <h2 className='section-title'><span>Project </span>Information</h2>
-                        <table className="user-table">
-                            <thead>
-                                <tr className='table-header'>
-                                    <th className='table-cell'>ID</th>
-                                    <th className='table-cell'>Project Name</th>
-                                    <th className='table-cell'>PITR Status</th>
-                                    {/* <th className='table-cell'>Tables</th> */}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {projectData?.length > 0 ? (projectData?.map((project, index) => (
-                                    <tr key={index}>
-                                        <td className='table-cell'>{project?.projectId}</td>
-                                        <td className='table-cell'>{project?.projectName}</td>
-                                        <td className='table-cell'>
-                                            <span className={`status ${project?.status === 'PASS' ? 'status-success' : 'status-danger'}`}>
-                                                {project?.status === 'PASS' ? 'Pass' : 'Fail'}
-                                            </span>
-                                        </td>
-                                        {/* <td className='table-cell'>
-                                        {tableData.length > 0 ? (
-                                            <ul className='table-list'>
-                                                {tableData.map((table, index) => (
-                                                    <li key={index} className='table-item'>
-                                                        {table.table}
-                                                        <span className={`status ${table.hasRLS ? 'status-success' : 'status-danger'}`}>
-                                                            {table.hasRLS ? 'RLS Enabled' : 'RLS Disabled'}
-                                                        </span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            'No Tables'
-                                        )}
-                                    </td> */}
+                        <div className="users-tables-responsive">
+                            <table className="user-table">
+                                <thead>
+                                    <tr className='table-header'>
+                                        <th className='table-cell'>ID</th>
+                                        <th className='table-cell'>Project Name</th>
+                                        <th className='table-cell'>PITR Status</th>
+                                        {/* <th className='table-cell'>Tables</th> */}
                                     </tr>
-                                ))) : (
-                                    <td colSpan={3} className="table-cell text-center">
-                                        No data
-                                    </td>
-                                )}
+                                </thead>
+                                <tbody>
+                                    {projectData?.length > 0 ? (projectData?.map((project, index) => (
+                                        <tr key={index}>
+                                            <td className='table-cell'>{project?.projectId}</td>
+                                            <td className='table-cell'>{project?.projectName}</td>
+                                            <td className='table-cell'>
+                                                <span className={`status ${project?.status === 'PASS' ? 'status-success' : 'status-danger'}`}>
+                                                    {project?.status === 'PASS' ? 'Pass' : 'Fail'}
+                                                </span>
+                                            </td>
+                                            {/* <td className='table-cell'>
+                                            {tableData.length > 0 ? (
+                                                <ul className='table-list'>
+                                                    {tableData.map((table, index) => (
+                                                        <li key={index} className='table-item'>
+                                                            {table.table}
+                                                            <span className={`status ${table.hasRLS ? 'status-success' : 'status-danger'}`}>
+                                                                {table.hasRLS ? 'RLS Enabled' : 'RLS Disabled'}
+                                                            </span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                'No Tables'
+                                            )}
+                                        </td> */}
+                                        </tr>
+                                    ))) : (
+                                        <tr>
+                                            <td colSpan={3} className="table-cell text-center">
+                                                No data
+                                            </td>
+                                        </tr>
+                                    )}
 
-                            </tbody>
-                        </table>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </motion.div>
                 </div>
 
             </div >
