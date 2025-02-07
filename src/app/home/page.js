@@ -139,6 +139,8 @@ export default function Home() {
     //  collapse
     const [open, setOpen] = useState(false);
 
+    const isMobile = window.innerWidth < 768;
+
   return (
     <>
       <div className="dashboardPage">
@@ -147,8 +149,8 @@ export default function Home() {
         {/* Summary Section */}
         {summaryData && (
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+            animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
             transition={{ ease: "easeInOut", duration: 1, delay: 0.1 }}
             className="section summary-section"
           >
@@ -161,8 +163,8 @@ export default function Home() {
               </div>
               <div className="grid summary-grid">
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
                   transition={{ ease: "easeInOut", duration: 1, delay: 0.1 }}
                   className="summary-item"
                 >
@@ -177,8 +179,8 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
                   transition={{ ease: "easeInOut", duration: 1, delay: 0.2 }}
                   className="summary-item purple"
                 >
@@ -193,8 +195,8 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
+                  initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
                   transition={{ ease: "easeInOut", duration: 1, delay: 0.3 }}
                   className="summary-item red"
                 >
@@ -211,9 +213,9 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ ease: "easeInOut", duration: 1, delay: 0.4 }}
+                  initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {} }
                   className="summary-item orange"
                 >
                   <img
@@ -236,18 +238,18 @@ export default function Home() {
         {/* Security Checks */}
         {securityChecks && (
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ ease: "easeInOut", duration: 1.1, delay: 1 }}
+            initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+            animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
+            transition={{ ease: "easeInOut", duration: 1.1, delay: 0.3 }}
             className="section security-checks"
           >
             <div className="container">
               <h2 className="section-title">Security Checks</h2>
               <div className="grid security-grid lg">
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ ease: "easeInOut", duration: 1, delay: 1.1 }}
+                  initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {} }
                   className="security-item"
                 >
                   <div>
@@ -259,9 +261,9 @@ export default function Home() {
                   <img src="enabled.png" alt="img" />
                 </motion.div>
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ ease: "easeInOut", duration: 1, delay: 1.3 }}
+                  initial={ !isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={ !isMobile ? { y: 0, opacity: 1 } : {} }
+                  transition={ !isMobile ? { ease: "easeInOut", duration: 1, delay: 0.5 } : {} }
                   className="security-item purple"
                 >
                   <div>
@@ -273,9 +275,9 @@ export default function Home() {
                   <img src="user.png" alt="img" />
                 </motion.div>
                 <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ ease: "easeInOut", duration: 1, delay: 1.4 }}
+                  initial={!isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={!isMobile ? { y: 0, opacity: 1 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {} }
                   className="security-item red"
                 >
                   <div>
@@ -295,7 +297,10 @@ export default function Home() {
           <div className="container">
             <div className="row">
               <div className="col-left">
-                <div className="summeryGraph_left">
+              <motion.div
+                  initial={!isMobile ? { y: 20, opacity: 0 } : {} }
+                  animate={!isMobile ? { y: 0, opacity: 1 } : {} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.5 } : {} } className="summeryGraph_left">
                   <h2 className="section-title">Summary</h2>
                   <div className="summeryGraph_wrap">
                     <ReactApexChart
@@ -309,10 +314,13 @@ export default function Home() {
                     <label>RLS Adoption Rate</label>
                     <p>0.0%</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
               <div className="col-right">
-                <div className="summeryGraph_right">
+              <motion.div
+                  initial={!isMobile ? { y: 20, opacity: 0 } :{} }
+                  animate={!isMobile ? { y: 0, opacity: 1 } :{} }
+                  transition={!isMobile ? { ease: "easeInOut", duration: 1, delay: 0.6 } : {}} className="summeryGraph_right">
                   <div className="summeryGraph_right_inner">
                     {recommendations.map((rec, index) => (
                       <div key={index} className="summeryGraph-item">
@@ -337,15 +345,20 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Users and Tables */}
-        <div className="section users-tables">
-          <div className="container">
+        <div className="section users-tables overflow-hidden">
+        <motion.div
+            initial={!isMobile ? { opacity: 0, y: 20 } : {}}
+            whileInView={!isMobile ? { opacity: 1, y: 0 } : {}}
+            transition={!isMobile ? { ease: "easeInOut", duration: 1 } : {}}
+            viewport={{ once: true, amount: 0.2 }} // Ensures animation triggers only once
+            className="container">
             <h2 className="section-title">Users and Tables</h2>
             <div className="users-tables-responsive">
               <table className="user-table">
@@ -400,7 +413,7 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* modal */}
