@@ -175,7 +175,7 @@ export default function Home() {
                   />
                   <div>
                     <p className="summary-label">Total Tables</p>
-                    <p className="summary-value">{summaryData.totalTables}</p>
+                    <p className="summary-value mb-0">{summaryData.totalTables}</p>
                   </div>
                 </motion.div>
                 <motion.div
@@ -191,7 +191,7 @@ export default function Home() {
                   />
                   <div>
                     <p className="summary-label">Tables with RLS</p>
-                    <p className="summary-value">{summaryData.tablesWithRLS}</p>
+                    <p className="summary-value mb-0">{summaryData.tablesWithRLS}</p>
                   </div>
                 </motion.div>
                 <motion.div
@@ -207,7 +207,7 @@ export default function Home() {
                   />
                   <div>
                     <p className="summary-label">Tables without RLS</p>
-                    <p className="summary-value">
+                    <p className="summary-value mb-0">
                       {summaryData.tablesWithoutRLS}
                     </p>
                   </div>
@@ -225,7 +225,7 @@ export default function Home() {
                   />
                   <div>
                     <p className="summary-label">RLS Adoption Rate</p>
-                    <p className="summary-value">
+                    <p className="summary-value mb-0">
                       {securityChecks?.rls_adoption_rate}
                     </p>
                   </div>
@@ -254,7 +254,7 @@ export default function Home() {
                 >
                   <div>
                     <p className="security-label">Auth Status</p>
-                    <p className="security-value">
+                    <p className="security-value  mb-0">
                       {securityChecks.auth_enabled ? "Enabled" : "Disabled"}
                     </p>
                   </div>
@@ -268,7 +268,7 @@ export default function Home() {
                 >
                   <div>
                     <p className="security-label">Total Users</p>
-                    <p className="security-value">
+                    <p className="security-value  mb-0">
                       {securityChecks.total_users}
                     </p>
                   </div>
@@ -282,7 +282,7 @@ export default function Home() {
                 >
                   <div>
                     <p className="security-label">Users with MFA</p>
-                    <p className="security-value">
+                    <p className="security-value  mb-0">
                       {securityChecks.users_with_mfa}
                     </p>
                   </div>
@@ -386,7 +386,7 @@ export default function Home() {
                       </td>
                       <td className="table-cell">
                         {tableData.length > 0 ? (
-                          <ul className="table-list">
+                          <ul className="table-list mb-0">
                             {tableData.map((table, index) => (
                               <li key={index} className="table-item">
                                 {table.table}
